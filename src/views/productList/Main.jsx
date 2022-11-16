@@ -81,9 +81,9 @@ function Main() {
               ? getPerPage.value * (getCurrentPage - 1) + 1
               : 1}{" "}
             to{" "}
-            {productList.totalDocs < getPerPage.value
+            {productList.totalDocs < getPerPage.value * getCurrentPage
               ? productList.totalDocs
-              : getPerPage.value}{" "}
+              : getPerPage.value * getCurrentPage}{" "}
             of {productList.totalDocs} entries
           </div>
           <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">

@@ -6,37 +6,37 @@ const sideMenu = atom({
     menu: [
       {
         icon: "Home",
-        pathname: "/",
+        pathname: "/home",
         title: "Dashboard",
       },
       {
         icon: "Layout",
-        pathname: "/order-management",
+        pathname: "/home/order-management",
         title: "Order Management",
       },
       {
         icon: "TrendingUp",
-        pathname: "/transaction-history",
+        pathname: "/home/transaction-history",
         title: "Transaction History",
       },
       {
         icon: "List",
-        pathname: "/product-list",
+        pathname: "/home/product-list",
         title: "Product List",
       },
-      {
-        icon: "Framer",
-        pathname: "/create-sales-order",
-        title: "Create Sales Order",
-      },
+      // {
+      //   icon: "Framer",
+      //   pathname: "/home/create-sales-order",
+      //   title: "Create Sales Order",
+      // },
       {
         icon: "Grid",
-        pathname: "/sales-order-list",
+        pathname: "/home/sales-order-list",
         title: "Sales Order List",
       },
       {
         icon: "Phone",
-        pathname: "/help",
+        pathname: "/home/help",
         title: "Contact",
       },
     ],

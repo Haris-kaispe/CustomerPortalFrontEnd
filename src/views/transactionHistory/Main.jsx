@@ -198,8 +198,8 @@ function Main() {
     { title: "ORDER ID", field: "orderRefId.orderId" },
     {
       title: "TOTAL QTY",
-      field: "qty",
-      formatter: reactFormatter(<Qtysetter />),
+      field: "orderRefId.totalQuantity",
+      // formatter: reactFormatter(<Qtysetter />),
     },
     { title: "DATE", field: "paymentDate", formatter: pmidFormatter },
     {

@@ -25,6 +25,8 @@ export const DELETE_HELP = "/contact/upload";
 
 export const ADD_CONTACT = "/contact";
 
+export const LOGIN = "/signin";
+
 // //SALES ORDER LIST
 // export const GET_PRODUCT_LIST = "/products"
 // export const ADD_PRODUCT_LIST = "/products"

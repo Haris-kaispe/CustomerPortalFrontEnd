@@ -6,6 +6,7 @@ import TransactionHistorySaga from "./transactionHistory/saga";
 import ProductListSaga from "./productList/saga";
 import SalesOrderListSaga from "./salesOrderList/saga";
 import HelpSaga from "./help/saga";
+import LoginSaga from "./login/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -15,5 +16,6 @@ export default function* rootSaga() {
     fork(ProductListSaga),
     fork(SalesOrderListSaga),
     fork(HelpSaga),
+    fork(LoginSaga),
   ]);
 }

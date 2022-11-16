@@ -5,6 +5,7 @@ import TransactionHistoryReducer from "./transactionHistory/reducer";
 import ProductListReducer from "./productList/reducer";
 import SalesOrderListReducer from "./salesOrderList/reducer";
 import HelpReducer from "./help/reducer";
+import LoginReducer from "./login/reducer";
 
 const rootReducer = combineReducers({
   OrderManagementReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   ProductListReducer,
   SalesOrderListReducer,
   HelpReducer,
+  LoginReducer,
 });
 
 export default rootReducer;

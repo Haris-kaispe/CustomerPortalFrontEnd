@@ -4,6 +4,7 @@ import axios from "axios";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 
+import * as Const from "../constants/Constants";
 // dotenv.config()
 
 //apply base url for axios
@@ -43,8 +44,10 @@ axiosApi.interceptors.response.use(
   }
 );
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJJZCI6IlVJRDEwIiwiaWQiOiI2MzUyN2E1NTU1ZGZjN2E4MDc5YTVlNGUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Njc5ODUyOTIsImV4cCI6MTY2ODAwNjg5Mn0.liOvWIM215vXOcBPz-T-O4aJYkzCQkcG93Wg1zCjmLs";
+const token = window.localStorage.getItem(Const.ACCESS_TOKEN);
+console.log(token);
+
+//  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJJZCI6IlVJRDEwIiwiaWQiOiI2MzUyN2E1NTU1ZGZjN2E4MDc5YTVlNGUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjgwNjM2NjksImV4cCI6MTY2ODE0NjQ2OX0.j00XiJnbRUnY1n5okuk5oKm-bkMM8jPdZYi55jqY9QU";
 
 export async function get(
   url,
@@ -58,6 +61,12 @@ export async function post(
   data,
   config = { headers: { Authorization: `Bearer ${token}` } }
 ) {
+  return axiosApi
+    .post(url, { ...data }, { ...config })
+    .then((response) => response.data);
+}
+
+export async function postwithnotoken(url, data, config = {}) {
   return axiosApi
     .post(url, { ...data }, { ...config })
     .then((response) => response.data);

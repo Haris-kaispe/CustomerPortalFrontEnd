@@ -1,5 +1,12 @@
 import axios from "axios";
-import { del, get, post, postformData, put } from "./api_helper";
+import {
+  del,
+  get,
+  post,
+  postformData,
+  postwithnotoken,
+  put,
+} from "./api_helper";
 import * as url from "./url_helper";
 
 // Register Method
@@ -112,6 +119,9 @@ const deleteHelp = (payload) => del(url.DELETE_HELP + "/" + payload.code);
 
 const addNewContact = (payload) => post(url.ADD_CONTACT, payload);
 
+// Auth Login
+const Login = (payload) => postwithnotoken(url.LOGIN, payload);
+
 //=========================================
 
 export {
@@ -136,4 +146,5 @@ export {
   updateHelp,
   deleteHelp,
   addNewContact,
+  Login,
 };

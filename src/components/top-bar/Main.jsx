@@ -12,9 +12,19 @@ import {
 import { faker as $f } from "@/utils";
 import * as $_ from "lodash";
 import classnames from "classnames";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { Logout as ActionLogout } from "../../store/actions";
+
+//import { useLocalStorage } from "../../hooks/useLocalStorage";
+
+import * as Const from "../../constants/Constants";
+
+import { useSelector, useDispatch } from "react-redux";
 
 function Main(props) {
+  const dispatch = useDispatch();
+
   const [searchDropdown, setSearchDropdown] = useState(false);
   const showSearchDropdown = () => {
     setSearchDropdown(true);
@@ -22,6 +32,9 @@ function Main(props) {
   const hideSearchDropdown = () => {
     setSearchDropdown(false);
   };
+  //  const [Token, setToken] = useLocalStorage(Const.ACCESS_TOKEN, "");
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -32,7 +45,7 @@ function Main(props) {
           aria-label="breadcrumb"
           className="-intro-x mr-auto hidden sm:flex"
         >
-            {/* <ol className="breadcrumb">
+          {/* <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <a href="#">Application</a>
               </li>
@@ -201,11 +214,12 @@ function Main(props) {
               </DropdownHeader>
               <DropdownDivider className="border-white/[0.08]" />
               <DropdownItem className="hover:bg-white/5">
-                <Lucide icon="User" className="w-4 h-4 mr-2" />                 <Link to="profile">Profile</Link>
+                <Lucide icon="User" className="w-4 h-4 mr-2" />{" "}
+                <Link to="profile">Profile</Link>
               </DropdownItem>
               <DropdownItem className="hover:bg-white/5">
                 <Lucide icon="Edit" className="w-4 h-4 mr-2" />
- Add Account
+                Add Account
               </DropdownItem>
               <DropdownItem className="hover:bg-white/5">
                 <Lucide icon="Lock" className="w-4 h-4 mr-2" /> Reset Password
@@ -215,7 +229,24 @@ function Main(props) {
               </DropdownItem>
               <DropdownDivider className="border-white/[0.08]" />
               <DropdownItem className="hover:bg-white/5">
-                <Lucide icon="ToggleRight" className="w-4 h-4 mr-2" /> Logout
+                <Lucide icon="ToggleRight" className="w-4 h-4 mr-2" />
+                <div
+                  onClick={() => {
+                    // navigate("/");
+                    window.localStorage.setItem(Const.ACCESS_TOKEN, "");
+
+                    dispatch(ActionLogout());
+
+                    console.log(
+                      "here->",
+                      window.localStorage.getItem(Const.ACCESS_TOKEN)
+                    );
+                    navigate("/");
+                    // window.location.href = "/";
+                  }}
+                >
+                  Logout
+                </div>
               </DropdownItem>
             </DropdownContent>
           </DropdownMenu>

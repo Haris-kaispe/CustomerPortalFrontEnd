@@ -6,6 +6,8 @@ import classnames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 
+import { ExportJsonCsv } from "react-export-json-csv";
+
 import { faker as $f } from "@/utils";
 
 import {
@@ -81,7 +83,7 @@ function Main() {
     ) {
       dispatch(onGetOrderManagement(params));
     }
-
+    console.log("orderManagement:", orderManagement);
     setOrderManagement(orderManagement);
   }, [orderManagement, getCurrentPage, getPerPage]);
 
@@ -89,6 +91,7 @@ function Main() {
     if (getCurrentOrderId.event) {
       let param = `/${getCurrentOrderId.value}`;
       dispatch(onGetOrderDetails(param));
+
       setCurrentOrderId({ value: "", event: false });
     }
     setOrderDetails(orderDetails);
@@ -131,6 +134,28 @@ function Main() {
   const currencyCodeFormat = (props) => {
     return `$${props}.00`;
   };
+
+  const headers = [
+    {
+      key: "id",
+      name: "ID",
+    },
+    {
+      key: "fname",
+      name: "First Name",
+    },
+  ];
+
+  const data = [
+    {
+      id: "1",
+      fname: "John",
+    },
+    {
+      id: "2",
+      fname: "Doe",
+    },
+  ];
 
   return (
     <>
@@ -194,13 +219,18 @@ function Main() {
               ? getPerPage.value * (getCurrentPage - 1) + 1
               : 1}{" "}
             to{" "}
-            {orderManagement.totalDocs < getPerPage.value
+            {orderManagement.totalDocs < getPerPage.value * getCurrentPage
               ? orderManagement.totalDocs
-              : getPerPage.value}{" "}
+              : getPerPage.value * getCurrentPage}{" "}
             of {orderManagement.totalDocs} entries
           </div>
           <div className="w-full xl:w-auto flex items-center mt-3 xl:mt-0">
             <button className="btn btn-primary shadow-md mr-2">
+              {orderManagement.hasOwnProperty("docs") ? (
+                <ExportJsonCsv headers={headers} items={orderManagement.docs}>
+                  Export
+                </ExportJsonCsv>
+              ) : null}
               <Lucide icon="FileText" className="w-4 h-4 mr-2" /> Export to
               Excel
             </button>
@@ -360,6 +390,10 @@ function Main() {
                           className="flex items-center text-primary whitespace-nowrap mr-2 ml-2"
                           href="#"
                           onClick={() => {
+                            setCurrentOrderId({
+                              value: `${value.orderId}`,
+                              event: true,
+                            });
                             setLargeSlideOverSizePreview(true);
                           }}
                         >
