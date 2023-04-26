@@ -33,7 +33,9 @@ Desktop.ini
 # environment variables
 .env.local
 .env.development.local
+.env.development
 .env.test.local
+.env.production
 .env.production.local
 
 # misc
