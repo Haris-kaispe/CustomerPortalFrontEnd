@@ -73,7 +73,7 @@ axiosApi.interceptors.response.use(
         window.location.href = "/login";
       } else if (status === 404) {
         // Not Found
-        toastr.error(data.message, "Not Found");
+        window.location.pathname = "/s/error-page";
       } else {
         toastr.error("Some thing went wrong", "error");
       }

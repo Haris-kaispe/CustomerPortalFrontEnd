@@ -18,6 +18,7 @@ const getRole = () => {
 
 const Authmiddleware = ({ component: Component, isAuthProtected, path, role }) => {
   const authUser = localStorage.getItem("authUser");
+
   if (isAuthProtected && !authUser) {
     return <Navigate to="/login" />;
   } else if (!isAuthProtected && authUser) {
@@ -43,7 +44,6 @@ const Authmiddleware = ({ component: Component, isAuthProtected, path, role }) =
     } else if (getRole() === "customer" && role === "admin") {
       return <Navigate to="/dashboard" />;
     } else {
-
       return <Component />;
     }
   }
