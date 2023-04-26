@@ -347,7 +347,6 @@ export default function manageUsersReducer(state = initialState, action) {
       };
 
     case GET_ALL_SHIPPING_INFO_SUCCESS:
-      console.log("action.payload", action.payload);
       return {
         ...state,
         loading: false,

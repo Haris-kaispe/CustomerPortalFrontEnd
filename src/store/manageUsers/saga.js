@@ -188,7 +188,6 @@ function* fetchShippingInfo(action) {
 
 function* fetchAllShippingInfo(action) {
   try {
-    console.log("action.payload", action.payload);
     const response = yield call(getShippingInfoList, action.payload);
     yield put(getAllShippingInfoSuccess(response?.data));
   } catch (error) {

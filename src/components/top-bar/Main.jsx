@@ -184,7 +184,6 @@ function Main() {
               <DropdownItem
                 className="hover:bg-white/5"
                 onClick={() => {
-                  console.log("logout");
                   dispatch(logoutUser(navigate));
                 }}
               >

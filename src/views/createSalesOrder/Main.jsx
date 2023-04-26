@@ -60,8 +60,6 @@ function Main() {
 
     const user = jwt(token.accessToken);
 
-    console.log("user", user);
-
     const payload = {
       userId: user.id
     };

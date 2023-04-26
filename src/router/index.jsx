@@ -3,7 +3,6 @@ import Dashboard from "../views/dashboard/Main";
 import ErrorPage from "../views/errorPage/Main";
 import Help from "../views/help/Main";
 import Login from "../views/login/Main";
-import Logout from "../components/Logout";
 import ManageUsers from "../views/manageUsers/Main";
 import OrderManagement from "../views/orderManagement/Main";
 import Pricing from "../views/plan/Main";
@@ -72,7 +71,6 @@ const publicRoutes = [
   { path: "/", component: Login },
   { path: "/login", component: Login },
   { path: "/register", component: Register },
-  { path: "/logout", component: Logout },
   { path: "/error-page", component: ErrorPage },
   { path: "*", component: ErrorPage }
 ];
