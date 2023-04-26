@@ -1,9 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import SideMenu from "./layouts/side-menu/Main";
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { authProtectedRoutes, publicRoutes } from "./router";
+
 import Authmiddleware from "./router/route";
+import PropTypes from "prop-types";
+import React from "react";
+import SideMenu from "./layouts/side-menu/Main";
 
 const App = (props) => {
   return (

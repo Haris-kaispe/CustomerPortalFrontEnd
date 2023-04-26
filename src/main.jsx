@@ -1,16 +1,17 @@
-import { createRoot } from "react-dom/client";
-import App from "./App";
-import React, { StrictMode } from "react";
 import "./assets/css/app.css";
-import { BrowserRouter as Router } from "react-router-dom";
+
+import React, { StrictMode } from "react";
+
+import App from "./App";
 import { Provider } from "react-redux";
-import store from "./store";
 import { RecoilRoot } from "recoil";
+import { BrowserRouter as Router } from "react-router-dom";
+import { createRoot } from "react-dom/client";
+import store from "./store";
 
 const root = createRoot(document.getElementById("root"));
 
-const currentPath = document.location.pathname.split("/")[1]; 
-
+const currentPath = document.location.pathname.split("/")[1];
 
 const basename = currentPath;
 

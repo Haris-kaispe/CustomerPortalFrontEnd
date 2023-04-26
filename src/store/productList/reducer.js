@@ -183,7 +183,6 @@ const ProductListReducer = (state = INIT_STATE, action) => {
         }
       }
 
-
       // store in local storage
       localStorage.setItem("cart", JSON.stringify(cartRecord));
 

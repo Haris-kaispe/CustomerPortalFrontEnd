@@ -1,17 +1,18 @@
-import { Transition } from "react-transition-group";
-import { useState, useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { helper as $h } from "@/utils";
-import { simpleMenu as useSimpleMenuStore } from "@/stores/simple-menu";
-import { useRecoilValue } from "recoil";
-import { linkTo, nestedMenu, enter, leave } from "@/layouts/side-menu";
 import { Lucide, Tippy } from "@/base-components";
-import logoUrl from "@/assets/images/k.png";
-import classnames from "classnames";
-import TopBar from "@/components/top-bar/Main";
-import MobileMenu from "@/components/mobile-menu/Main";
-import MainColorSwitcher from "@/components/main-color-switcher/Main";
+import { enter, leave, linkTo, nestedMenu } from "@/layouts/side-menu";
+import { useEffect, useState } from "react";
+
+import { helper as $h } from "@/utils";
 import DarkModeSwitcher from "@/components/dark-mode-switcher/Main";
+import MainColorSwitcher from "@/components/main-color-switcher/Main";
+import MobileMenu from "@/components/mobile-menu/Main";
+import TopBar from "@/components/top-bar/Main";
+import { Transition } from "react-transition-group";
+import classnames from "classnames";
+import logoUrl from "@/assets/images/k.png";
+import { useRecoilValue } from "recoil";
+import { simpleMenu as useSimpleMenuStore } from "@/stores/simple-menu";
 
 function Main() {
   const navigate = useNavigate();

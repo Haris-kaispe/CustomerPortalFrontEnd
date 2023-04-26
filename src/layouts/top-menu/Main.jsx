@@ -1,26 +1,28 @@
-import { useState, useEffect } from "react";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { helper as $h } from "@/utils";
-import { topMenu as useTopMenuStore } from "@/stores/top-menu";
-import { faker as $f } from "@/utils";
 import * as $_ from "lodash";
-import { useRecoilValue } from "recoil";
-import { linkTo, nestedMenu } from "@/layouts/side-menu";
+
 import {
-  Lucide,
   Dropdown,
-  DropdownToggle,
-  DropdownMenu,
   DropdownContent,
-  DropdownItem,
+  DropdownDivider,
   DropdownHeader,
-  DropdownDivider
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Lucide
 } from "@/base-components";
-import logoUrl from "@/assets/images/k.png";
-import classnames from "classnames";
-import MobileMenu from "@/components/mobile-menu/Main";
-import MainColorSwitcher from "@/components/main-color-switcher/Main";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { linkTo, nestedMenu } from "@/layouts/side-menu";
+import { useEffect, useState } from "react";
+
+import { faker as $f } from "@/utils";
+import { helper as $h } from "@/utils";
 import DarkModeSwitcher from "@/components/dark-mode-switcher/Main";
+import MainColorSwitcher from "@/components/main-color-switcher/Main";
+import MobileMenu from "@/components/mobile-menu/Main";
+import classnames from "classnames";
+import logoUrl from "@/assets/images/k.png";
+import { useRecoilValue } from "recoil";
+import { topMenu as useTopMenuStore } from "@/stores/top-menu";
 
 function Main() {
   const [searchDropdown, setSearchDropdown] = useState(false);

@@ -14,13 +14,12 @@ import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { helper as $h } from "@/utils";
+import alternateImage from "../../assets/images/gallery.png";
 import classnames from "classnames";
 import dom from "@left4code/tw-starter/dist/js/dom";
 import { helper } from "@/utils/helper";
 import jwt from "jwt-decode"; // import dependency
 import { QuantityChange as onQuantityChange } from "../../store/actions";
-import alternateImage from "../../assets/images/gallery.png"
-
 
 function Main() {
   const dispatch = useDispatch();
@@ -105,14 +104,11 @@ function Main() {
                             alt="Image Not Found"
                             className="rounded-full"
                             src={
-                              rec?.productImage[0]?.url
-                                ? rec.productImage[0].url
-                                : alternateImage
+                              rec?.productImage[0]?.url ? rec.productImage[0].url : alternateImage
                             }
                             onError={({ currentTarget }) => {
                               currentTarget.onerror = null;
-                              currentTarget.src =
-                              alternateImage
+                              currentTarget.src = alternateImage;
                             }}
                           />
                         </div>
