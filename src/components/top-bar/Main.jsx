@@ -10,20 +10,21 @@ import {
 } from "@/base-components";
 import { darkMode as darkModeStore, darkModeValue } from "@/stores/dark-mode";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { helper as $h } from "@/utils";
+import { Fragment } from "react";
+import alternateImage from "../../assets/images/gallery.png";
 import classnames from "classnames";
 import dom from "@left4code/tw-starter/dist/js/dom";
-import { helper } from "@/utils/helper";
-import jwt from "jwt-decode"; // import dependency
+import { logoutUser } from "../../store/actions";
 import { QuantityChange as onQuantityChange } from "../../store/actions";
-import alternateImage from "../../assets/images/gallery.png"
-
+import { useNavigate } from "react-router-dom";
 
 function Main() {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const darkMode = useRecoilValue(darkModeStore);
   const setDarkModeValue = useSetRecoilState(darkModeValue);
@@ -49,7 +50,7 @@ function Main() {
   };
 
   return (
-    <>
+    <Fragment>
       <div className="top-bar">
         <nav aria-label="breadcrumb" className="-intro-x mr-auto hidden sm:flex"></nav>
         <div>
@@ -105,14 +106,11 @@ function Main() {
                             alt="Image Not Found"
                             className="rounded-full"
                             src={
-                              rec?.productImage[0]?.url
-                                ? rec.productImage[0].url
-                                : alternateImage
+                              rec?.productImage[0]?.url ? rec.productImage[0].url : alternateImage
                             }
                             onError={({ currentTarget }) => {
                               currentTarget.onerror = null;
-                              currentTarget.src =
-                              alternateImage
+                              currentTarget.src = alternateImage;
                             }}
                           />
                         </div>
@@ -182,11 +180,14 @@ function Main() {
                 <Lucide icon="User" className="w-4 h-4 mr-2" /> Profile
               </DropdownItem>
 
-              {/* <DropdownItem className="hover:bg-white/5">
-                <Lucide icon="Lock" className="w-4 h-4 mr-2" /> Reset Password
-              </DropdownItem>*/}
               <DropdownDivider className="border-white/[0.08]" />
-              <DropdownItem className="hover:bg-white/5" link="/logout">
+              <DropdownItem
+                className="hover:bg-white/5"
+                onClick={() => {
+                  console.log("logout");
+                  dispatch(logoutUser(navigate));
+                }}
+              >
                 <Lucide icon="ToggleRight" className="w-4 h-4 mr-2" />
                 <div>Logout</div>
               </DropdownItem>
@@ -194,7 +195,7 @@ function Main() {
           </DropdownMenu>
         </Dropdown>
       </div>
-    </>
+    </Fragment>
   );
 }
 

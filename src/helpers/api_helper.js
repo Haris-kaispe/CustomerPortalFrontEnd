@@ -74,8 +74,6 @@ axiosApi.interceptors.response.use(
       } else if (status === 404) {
         // Not Found
         toastr.error(data.message, "Not Found");
-        // localStorage.clear();
-        window.location.href = "/error-page";
       } else {
         toastr.error("Some thing went wrong", "error");
       }

@@ -1,27 +1,26 @@
-import PropTypes from "prop-types"
-import React, { useEffect } from "react"
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { logoutUser } from "../store/actions"
+import PropTypes from "prop-types";
+import { logoutUser } from "../store/actions";
+import { useNavigate } from "react-router-dom";
 
 //redux
-import { useSelector, useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
 
-
-const Logout = props => {
+const Logout = (props) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-  
-    dispatch(logoutUser(navigate))
-  }, [dispatch])
+    console.log("here");
+    dispatch(logoutUser(navigate));
+  }, [dispatch]);
 
-  return <>""</>
-}
+  return <>""</>;
+};
 
 Logout.propTypes = {
-  history: PropTypes.object,
-}
+  history: PropTypes.object
+};
 
-export default Logout
+export default Logout;

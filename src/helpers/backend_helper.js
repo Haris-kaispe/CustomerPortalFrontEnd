@@ -4,7 +4,7 @@ import { del, get, patch, post, postformData, postwithnotoken, put } from "./api
 
 import { PublicClientApplication } from "@azure/msal-browser";
 import axios from "axios";
-import { config } from "../Config";
+import { config } from "../../Config";
 
 // Register Method
 const postJwtRegister = (url, data) => {

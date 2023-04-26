@@ -1,33 +1,27 @@
-import DarkModeSwitcher from "@/components/dark-mode-switcher/Main";
-import dom from "@left4code/tw-starter/dist/js/dom";
-import logoUrl from "@/assets/images/k.png";
-import illustrationUrl from "@/assets/images/illustration.svg";
-import { useFormik } from "formik";
-import {
-  Row,
-  Col,
-  CardBody,
-  Card,
-  Alert,
-  Container,
-  Form,
-  Input,
-  FormFeedback,
-  Label
-} from "reactstrap";
-
-import { Link, Outlet, useLocation, useNavigate, Navigate } from "react-router-dom";
-
 import * as Yup from "yup";
 
-import { useSelector, useDispatch } from "react-redux";
-
+import {
+  Alert,
+  Card,
+  CardBody,
+  Col,
+  Container,
+  Form,
+  FormFeedback,
+  Input,
+  Label,
+  Row
+} from "reactstrap";
+import { Link, Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { loginUser as PostLogin, loginWithAzure as PostLoginWithAzure } from "../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import { loginUser as PostLogin, loginWithAzure as PostLoginWithAzure } from "../../store/actions";
-
-import { PublicClientApplication } from "@azure/msal-browser";
-import { config } from "../../Config";
+import DarkModeSwitcher from "@/components/dark-mode-switcher/Main";
+import dom from "@left4code/tw-starter/dist/js/dom";
+import illustrationUrl from "@/assets/images/illustration.svg";
+import logoUrl from "@/assets/images/k.png";
+import { useFormik } from "formik";
 
 const Login = (props) => {
   const history = useNavigate();
