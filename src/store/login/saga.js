@@ -41,6 +41,7 @@ function* loginWithAzure({ payload: history }) {
 
       const backendResponse = yield call(postAzureLogin, response);
 
+
       if (backendResponse?.accessToken && backendResponse?.azure_data) {
         localStorage.setItem("authUser", JSON.stringify(backendResponse));
         history("/admin-panel");

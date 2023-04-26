@@ -1,5 +1,5 @@
-import Litepicker from "litepicker";
 import dayjs from "dayjs";
+import Litepicker from "litepicker";
 
 const getDateFormat = (format) => {
   return format !== undefined ? format : "MM/DD/YYYY";
@@ -17,7 +17,7 @@ const init = (el, props) => {
         date += endDate !== undefined ? " - " + dayjs(endDate.dateInstance).format(format) : "";
         props.onChange(date);
       });
-    }
+    },
   });
 };
 

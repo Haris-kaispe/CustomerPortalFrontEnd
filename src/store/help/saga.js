@@ -50,6 +50,7 @@ function* onGetContactDetails({ payload: rec }) {
   try {
     const response = yield call(getContactDetails, rec);
 
+
     yield put(getContactDetailsSuccess(response.data));
   } catch (error) {
     yield put(getContactDetailsFail(error));

@@ -1,6 +1,5 @@
 import { createElement, createRef, useEffect } from "react";
 import { init, reInit } from "./index";
-
 import PropTypes from "prop-types";
 import { useRef } from "react";
 
@@ -33,7 +32,7 @@ function Litepicker(props) {
       ref: litepickerRef,
       type: "text",
       value: props.value,
-      onChange: props.onChange
+      onChange: props.onChange,
     },
     props.children
   );
@@ -43,14 +42,14 @@ Litepicker.propTypes = {
   options: PropTypes.object,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  getRef: PropTypes.func
+  getRef: PropTypes.func,
 };
 
 Litepicker.defaultProps = {
   options: {},
   value: "",
   onChange: () => {},
-  getRef: () => {}
+  getRef: () => {},
 };
 
 export default Litepicker;

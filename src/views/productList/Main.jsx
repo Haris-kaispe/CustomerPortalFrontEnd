@@ -16,9 +16,10 @@ import { useEffect, useState } from "react";
 
 import { helper as $h } from "@/utils";
 import Select from "react-select";
-import alternateImage from "../../assets/images/gallery.png";
 import classNames from "classnames";
 import toastr from "toastr";
+import alternateImage from "../../assets/images/gallery.png"
+
 
 function Main() {
   const dispatch = useDispatch();
@@ -150,10 +151,16 @@ function Main() {
                     target="_blank"
                     alt="Image Not Found"
                     className="rounded-md"
-                    src={value.productImage[0]?.url ? value.productImage[0]?.url : alternateImage}
+                    src={
+                      value.productImage[0]?.url
+                        ? value.productImage[0]?.url
+                        : 
+                        alternateImage
+                    }
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null; // prevents looping
-                      currentTarget.src = alternateImage;
+                      currentTarget.src =
+                      alternateImage
                     }}
                   />
 

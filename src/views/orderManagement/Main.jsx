@@ -11,15 +11,17 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { ExportJsonCsv } from "react-export-json-csv";
 import Select from "react-select";
 import { StripePayButton } from "../../components/payment-buttons/Main";
-import alternateImage from "../../assets/images/gallery.png";
 import classnames from "classnames";
 import jsPDF from "jspdf";
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
+
+import alternateImage from "../../assets/images/gallery.png"
 
 function Main() {
   const componentRef = useRef();
@@ -69,6 +71,8 @@ function Main() {
   });
   const [reorder, setReorder] = useState({ id: "", event: false });
 
+
+
   useEffect(() => {
     var date = getDateRange.split("-");
 
@@ -116,6 +120,7 @@ function Main() {
     let param = `?perPage=${getPerPage.value}&page=1`;
     var date = getDateRange.split("-");
 
+
     param += getOrderId ? `&orderId=${getOrderId}` : "";
     param += getStatus !== "" ? `&orderStatus=${getStatus.value}` : "";
     param += date && date[0] != date[1] ? `&dateRange=${getDateRange.replace(/\s+/g, "")}` : "";
@@ -130,6 +135,7 @@ function Main() {
     dispatch(onGetOrderManagement(param));
   };
 
+
   useEffect(() => {
     if (reorder.event) {
       const { id } = reorder;
@@ -137,6 +143,8 @@ function Main() {
       navigate("/create-sales-order?reorder=true&orderId=" + id);
     }
   }, [reorder]);
+
+
 
   const handleResetFilter = () => {
     setOrderId("");
@@ -157,10 +165,12 @@ function Main() {
     // setTransactionHistory(transactionHistory);
   };
 
+
+
   function handleReOrder(id) {
     setDeleteConfirmationModal({
       show: false,
-      id: null
+      id: null,
     });
 
     setReorder({ id: id, event: true });
@@ -174,6 +184,9 @@ function Main() {
     // }
     // ..//});
   } //
+
+
+
 
   return (
     <>
@@ -376,38 +389,43 @@ function Main() {
                       >
                         Print Invoice
                       </a>
-
-                      {value.orderStatus == "approval" ? (
+                      
+                      {
+                        value.orderStatus == "approval" ?
                         // grey text color
                         <div className="flex items-center text-grey-500 whitespace-nowrap mr-2 ml-2">
-                          Make a Payment
+                        Make a Payment
                         </div>
-                      ) : (
+                        :
                         <a
-                          className="flex items-center text-primary whitespace-nowrap mr-2 ml-2"
-                          href="#"
-                          onClick={() => {
-                            setCurrentOrderId({
-                              value: `${value.orderId}`,
-                              event: true
-                            });
-                            setLargeSlideOverSizePreview(true);
-                            setisPayNowVisible(true);
-                          }}
-                        >
-                          Make a Payment
-                        </a>
-                      )}
+                        className="flex items-center text-primary whitespace-nowrap mr-2 ml-2"
+                        href="#"
+                        onClick={() => {
+                          setCurrentOrderId({
+                            value: `${value.orderId}`,
+                            event: true
+                          });
+                          setLargeSlideOverSizePreview(true);
+                          setisPayNowVisible(true);
+                        }}
+                      >
+                        Make a Payment
+                      </a>
 
-                      <a
+                      }
+                      
+                       <a
                         className="flex items-center text-primary whitespace-nowrap ml-2"
                         href="#"
                         onClick={() => {
-                          setDeleteConfirmationModal({
-                            show: true,
-                            id: value.orderId
+                  
+                          setDeleteConfirmationModal({ 
+                            show : true,
+                            id : value.orderId
                           });
-                        }}
+                          }
+                        }
+                        
                       >
                         <Lucide icon="Repeat" className="w-4 h-4 mr-1" />
                         Repeat the Order
@@ -797,11 +815,14 @@ function Main() {
                                           src={
                                             value?.prodRefId?.productImage.length > 0
                                               ? value.prodRefId?.productImage[0].url
-                                              : alternateImage
+                                              : 
+                                              alternateImage
+
                                           }
                                           onError={({ currentTarget }) => {
                                             currentTarget.onerror = null; // prevents looping
-                                            currentTarget.src = alternateImage;
+                                            currentTarget.src =
+                                            alternateImage
                                           }}
                                         />
                                       </div>
@@ -1106,7 +1127,7 @@ function Main() {
         onHidden={() => {
           setDeleteConfirmationModal({
             show: false,
-            id: null
+            id: null,
           });
         }}
       >
@@ -1122,21 +1143,24 @@ function Main() {
             <button
               type="button"
               onClick={() => {
+
+                
                 setDeleteConfirmationModal({
                   show: false,
-                  id: null
+                  id: null,
                 });
               }}
               className="btn btn-outline-secondary w-24 mr-1"
             >
               Cancel
             </button>
-            <button
-              type="button"
-              className="btn btn-success w-24"
-              onClick={() => {
-                handleReOrder(deleteConfirmationModal.id);
-              }}
+            <button type="button" className="btn btn-success w-24"
+            onClick={() => {
+              handleReOrder(deleteConfirmationModal.id);
+
+
+            }
+            }
             >
               Create
             </button>

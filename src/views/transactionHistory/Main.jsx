@@ -1,11 +1,7 @@
 import * as $_ from "lodash";
 
 import { helper as $h, ConstructJSON as JsonData, keyValue as kv } from "@/utils";
-import {
-  CapitalizeFormatter,
-  PaymentStatusFormatter,
-  SimpleButton,
-  pmidFormatter
+import { CapitalizeFormatter, SimpleButton, pmidFormatter , PaymentStatusFormatter,
 } from "../../utils/formaters.jsx";
 import { Litepicker, Lucide } from "@/base-components";
 import { ReactTabulator, reactFormatter } from "react-tabulator";
@@ -69,6 +65,7 @@ function Main() {
     setTransactionHistory(transactionHistory);
   }, [dispatch, getCurrentPage, getPerPage]);
 
+
   const handleFilterFunction = () => {
     let param = `?invoiceStatus=paid&perPage=${getPerPage.value}&page=1`;
 
@@ -88,6 +85,7 @@ function Main() {
     dispatch(onGetTransactionHistory(param));
     setTransactionHistory(transactionHistory);
   };
+
 
   function DescriptionFormatter(props) {
     const description = props.cell._cell.row.data.invoiceNumber;
@@ -113,6 +111,8 @@ function Main() {
     );
   }
 
+
+
   const handleResetFilter = () => {
     setPaymentId("");
     setDateRange("");
@@ -129,6 +129,7 @@ function Main() {
     dispatch(onGetTransactionHistory(param));
     setTransactionHistory(transactionHistory);
   };
+
 
   const columns = [
     {
@@ -233,6 +234,7 @@ function Main() {
               </button>
             </div>
           </form>
+        
         </div>
         <div className="overflow-x-auto scrollbar-hidden">
           <ReactTabulator columns={columns} data={transactionHistory?.docs} />

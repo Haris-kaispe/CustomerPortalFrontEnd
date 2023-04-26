@@ -16,20 +16,17 @@ import {
   TomSelect
 } from "@/base-components";
 import { Fragment, useEffect, useState } from "react";
-import {
-  clearShippingInfo,
-  deleteShippingInfo,
-  getSpecificUser,
-  updateUser
-} from "../../store/actions";
+import { deleteShippingInfo, getSpecificUser, updateUser , clearShippingInfo} from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 import { helper as $h } from "@/utils";
 import ShippingAddressModal from "./ShippingAddressModal";
-import alternateImage from "../../assets/images/user.png";
 import classnames from "classnames";
 import { useDropzone } from "react-dropzone";
 import { useFormik } from "formik";
+
+import alternateImage from "../../assets/images/user.png"
+
 
 function Main() {
   const [select, setSelect] = useState("1");
@@ -95,23 +92,33 @@ function Main() {
 
   const callbackFunc = (rec) => setAddUpdateModal(rec);
 
+
   const handlePhoneChange = (event) => {
-    const { value } = event.target; // regex that contains all the symbols and symbols except backspace and numbers
 
-    const regex = /[!@#$%^&*()_\-=\[\]{};':"\\|,.<>\/?~`a-zA-Z]/;
-
-    if (regex.test(value)) {
-      event.preventDefault();
-
-      return false;
+     const { value } = event.target;
+    
+      // regex that contains all the symbols and symbols except backspace and numbers
+    
+   const regex = /[!@#$%^&*()_\-=\[\]{};':"\\|,.<>\/?~`a-zA-Z]/;
+    
+    
+    
+     if (regex.test(value)) {
+    
+   event.preventDefault();
+    
+   return false;
+    
     }
+    
+    
+   setFieldValue("phoneNumber", value);
 
-    setFieldValue("phoneNumber", value);
-  };
+  }
 
-  const { user, loading, updated, error, shippingInfoDeleted } = useSelector(
-    (state) => state.ManageUsersReducer
-  );
+  
+
+  const { user, loading, updated, error , shippingInfoDeleted } = useSelector((state) => state.ManageUsersReducer);
 
   // case UPDATE_NEW_USER:
   //     return {
@@ -126,11 +133,13 @@ function Main() {
       dispatch(clearShippingInfo());
       setUpdateEnabled(false);
       setSubmit(false);
-    } else if (error) {
+    }else if(error){
       setSubmit(false);
       setUpdateEnabled(false);
     }
-  }, [updated, loading, error]);
+
+
+  }, [updated ,loading ,error]);
 
   const initalValues = {
     name: "",
@@ -143,8 +152,7 @@ function Main() {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
-    phoneNumber: Yup.string()
-      .required("Phone Number is required")
+    phoneNumber: Yup.string().required("Phone Number is required")
       .min(11, "11 digits required")
       .max(13, "13 digits required atmost"),
 
@@ -184,6 +192,8 @@ function Main() {
     }
   }, [dispatch]);
 
+
+
   useEffect(() => {
     if (!$h.isNullObject(user)) {
       setValues({
@@ -213,10 +223,13 @@ function Main() {
                     target="_blank"
                     alt="Image Not Found"
                     className="rounded-full"
-                    src={alternateImage}
+                    src={
+                      alternateImage
+                    }
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null; // prevents looping
-                      currentTarget.src = alternateImage;
+                      currentTarget.src =
+                      alternateImage
                     }}
                   />
                 </div>
@@ -447,7 +460,7 @@ function Main() {
                               disabled={updateEnabled ? false : true}
                               value={values.phoneNumber}
                               name="phoneNumber"
-                              onChange={(event) => handlePhoneChange(event)}
+                                                      onChange={(event) => handlePhoneChange(event)}
                               // onChange={handleChange}
                               onBlur={handleBlur}
                               // pattern only numbers and + sign
@@ -522,10 +535,13 @@ function Main() {
                               target="_blank"
                               alt="Image Not Found"
                               className="rounded-md"
-                              src={alternateImage}
+                              src={
+                                alternateImage
+                              }
                               onError={({ currentTarget }) => {
                                 currentTarget.onerror = null; // prevents looping
-                                currentTarget.src = alternateImage;
+                                currentTarget.src =
+                                alternateImage
                               }}
                             />
                             <Tippy
@@ -651,6 +667,7 @@ function Main() {
                         data: null
                       });
                     }}
+                    
                   >
                     Add New Address
                   </button>

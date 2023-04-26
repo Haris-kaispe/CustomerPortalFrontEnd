@@ -1,8 +1,7 @@
-import { darkMode as darkModeStore, darkModeValue } from "@/stores/dark-mode";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-
-import classnames from "classnames";
+import { darkModeValue, darkMode as darkModeStore } from "@/stores/dark-mode";
 import dom from "@left4code/tw-starter/dist/js/dom";
+import classnames from "classnames";
 
 function Main(props) {
   const darkMode = useRecoilValue(darkModeStore);
