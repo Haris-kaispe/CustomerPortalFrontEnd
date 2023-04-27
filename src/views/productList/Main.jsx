@@ -16,10 +16,9 @@ import { useEffect, useState } from "react";
 
 import { helper as $h } from "@/utils";
 import Select from "react-select";
+import alternateImage from "../../assets/images/gallery.png";
 import classNames from "classnames";
 import toastr from "toastr";
-import alternateImage from "../../assets/images/gallery.png"
-
 
 function Main() {
   const dispatch = useDispatch();
@@ -151,16 +150,10 @@ function Main() {
                     target="_blank"
                     alt="Image Not Found"
                     className="rounded-md"
-                    src={
-                      value.productImage[0]?.url
-                        ? value.productImage[0]?.url
-                        : 
-                        alternateImage
-                    }
+                    src={value.productImage[0]?.url ? value.productImage[0]?.url : alternateImage}
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null; // prevents looping
-                      currentTarget.src =
-                      alternateImage
+                      currentTarget.src = alternateImage;
                     }}
                   />
 
@@ -262,85 +255,83 @@ function Main() {
           })}
         ></div>
         {/* END: Users Layout */}
-        {/* BEGIN: Pagination */}
-        {productList.hasOwnProperty("docs") ? (
-          <div className="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
-            <nav className="w-full sm:w-auto sm:mr-auto">
-              <ul className="pagination">
-                {productList.hasPrevPage ? (
-                  <div>
-                    <li className="page-item">
-                      <a className="page-link" href="#123" onClick={() => setCurrentPage(1)}>
-                        <Lucide icon="ChevronsLeft" className="w-4 h-4" />
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a
-                        className="page-link"
-                        href="#"
-                        onClick={() => setCurrentPage(productList.prevPage)}
-                      >
-                        <Lucide icon="ChevronLeft" className="w-4 h-4" />
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a
-                        className="page-link"
-                        href="#"
-                        onClick={() => setCurrentPage(productList.prevPage)}
-                      >
-                        {productList.prevPage}
-                      </a>
-                    </li>
-                  </div>
-                ) : null}
-                <li className="page-item active">
-                  <a className="page-link" href="#">
-                    {productList.page}
-                  </a>
-                </li>
-                {productList.hasNextPage ? (
-                  <div>
-                    <li className="page-item">
-                      <a
-                        className="page-link"
-                        href="#"
-                        onClick={() => setCurrentPage(productList.nextPage)}
-                      >
-                        {productList.nextPage}
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a
-                        className="page-link"
-                        href="#"
-                        onClick={() => setCurrentPage(productList.nextPage)}
-                      >
-                        <Lucide icon="ChevronRight" className="w-4 h-4" />
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a
-                        className="page-link"
-                        href="#123"
-                        onClick={() => setCurrentPage(productList.totalPages)}
-                      >
-                        <Lucide icon="ChevronsRight" className="w-4 h-4" />
-                      </a>
-                    </li>
-                  </div>
-                ) : null}
-              </ul>
-            </nav>
+        <div className="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-6">
+          <nav className="w-full sm:w-auto sm:mr-auto">
+            <ul className="pagination">
+              {productList.hasPrevPage ? (
+                <>
+                  <li className="page-item">
+                    <a className="page-link" href="#123" onClick={() => setCurrentPage(1)}>
+                      <Lucide icon="ChevronsLeft" className="w-4 h-4" />
+                    </a>
+                  </li>
+                  <li className="page-item">
+                    <a
+                      className="page-link"
+                      href="#"
+                      onClick={() => setCurrentPage(productList.prevPage)}
+                    >
+                      <Lucide icon="ChevronLeft" className="w-4 h-4" />
+                    </a>
+                  </li>
 
-            <Select
-              defaultValue={getPerPage}
-              onChange={(e) => setPerPage({ value: `${e.value}`, label: `${e.value}` })}
-              options={options}
-            />
-          </div>
-        ) : null}
-        {/* END: Pagination */}
+                  <li className="page-item">
+                    <a
+                      className="page-link"
+                      href="#"
+                      onClick={() => setCurrentPage(productList.prevPage)}
+                    >
+                      {productList.prevPage}
+                    </a>
+                  </li>
+                </>
+              ) : null}
+              <li className="page-item active">
+                <a className="page-link" href="#">
+                  {productList.page}
+                </a>
+              </li>
+              {productList.hasNextPage ? (
+                <>
+                  <li className="page-item">
+                    <a
+                      className="page-link"
+                      href="#"
+                      onClick={() => setCurrentPage(productList.nextPage)}
+                    >
+                      {productList.nextPage}
+                    </a>
+                  </li>
+
+                  <li className="page-item">
+                    <a
+                      className="page-link"
+                      href="#"
+                      onClick={() => setCurrentPage(productList.nextPage)}
+                    >
+                      <Lucide icon="ChevronRight" className="w-4 h-4" />
+                    </a>
+                  </li>
+
+                  <li className="page-item">
+                    <a
+                      className="page-link"
+                      href="#123"
+                      onClick={() => setCurrentPage(productList.totalPages)}
+                    >
+                      <Lucide icon="ChevronsRight" className="w-4 h-4" />
+                    </a>
+                  </li>
+                </>
+              ) : null}
+            </ul>
+          </nav>
+          <Select
+            defaultValue={getPerPage}
+            onChange={(e) => setPerPage({ value: `${e.value}`, label: `${e.value}` })}
+            options={options}
+          />
+        </div>
       </div>
       {/* BEGIN: Delete Confirmation Modal */}
       <Modal
