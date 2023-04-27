@@ -35,7 +35,10 @@ function Main() {
               </div>
               <button
                 className="intro-x btn py-3 px-4 text-white border-white dark:border-darkmode-400 dark:text-slate-200 mt-10"
-                onClick={() => navigate("/")}
+                onClick={() => {
+                  localStorage.clear();
+                  navigate("/login");
+                }}
               >
                 Back to Home
               </button>
