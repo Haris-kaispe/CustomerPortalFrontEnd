@@ -21,7 +21,7 @@ import jsPDF from "jspdf";
 import moment from "moment";
 import { useReactToPrint } from "react-to-print";
 
-import alternateImage from "../../assets/images/gallery.png"
+import alternateImage from "../../assets/images/gallery.png";
 
 function Main() {
   const componentRef = useRef();
@@ -71,8 +71,6 @@ function Main() {
   });
   const [reorder, setReorder] = useState({ id: "", event: false });
 
-
-
   useEffect(() => {
     var date = getDateRange.split("-");
 
@@ -120,7 +118,6 @@ function Main() {
     let param = `?perPage=${getPerPage.value}&page=1`;
     var date = getDateRange.split("-");
 
-
     param += getOrderId ? `&orderId=${getOrderId}` : "";
     param += getStatus !== "" ? `&orderStatus=${getStatus.value}` : "";
     param += date && date[0] != date[1] ? `&dateRange=${getDateRange.replace(/\s+/g, "")}` : "";
@@ -135,7 +132,6 @@ function Main() {
     dispatch(onGetOrderManagement(param));
   };
 
-
   useEffect(() => {
     if (reorder.event) {
       const { id } = reorder;
@@ -143,8 +139,6 @@ function Main() {
       navigate("/create-sales-order?reorder=true&orderId=" + id);
     }
   }, [reorder]);
-
-
 
   const handleResetFilter = () => {
     setOrderId("");
@@ -165,12 +159,10 @@ function Main() {
     // setTransactionHistory(transactionHistory);
   };
 
-
-
   function handleReOrder(id) {
     setDeleteConfirmationModal({
       show: false,
-      id: null,
+      id: null
     });
 
     setReorder({ id: id, event: true });
@@ -184,9 +176,6 @@ function Main() {
     // }
     // ..//});
   } //
-
-
-
 
   return (
     <>
@@ -324,7 +313,7 @@ function Main() {
                   </td>
                   <td className="text-center">
                     <div className="flex items-center justify-center whitespace-nowrap text-center">
-                      {value?.invoiceNumber ? value?.invoiceNumber : "N/A"}
+                      {value?.invoiceNumber ? value?.invoiceNumber : "-"}
                     </div>
                   </td>
 
@@ -387,45 +376,40 @@ function Main() {
                           setisPayNowVisible(false);
                         }}
                       >
-                        Print Invoice
-                      </a>
-                      
-                      {
-                        value.orderStatus == "approval" ?
-                        // grey text color
-                        <div className="flex items-center text-grey-500 whitespace-nowrap mr-2 ml-2">
-                        Make a Payment
-                        </div>
-                        :
-                        <a
-                        className="flex items-center text-primary whitespace-nowrap mr-2 ml-2"
-                        href="#"
-                        onClick={() => {
-                          setCurrentOrderId({
-                            value: `${value.orderId}`,
-                            event: true
-                          });
-                          setLargeSlideOverSizePreview(true);
-                          setisPayNowVisible(true);
-                        }}
-                      >
-                        Make a Payment
+                        {value.orderStatus == "approval" ? " Draft Invoice" : "View Invoice"}
                       </a>
 
-                      }
-                      
-                       <a
+                      {value.orderStatus == "approval" || value.invoiceStatus == "paid" ? (
+                        // grey text color
+                        <div className="flex items-center text-grey-500 whitespace-nowrap mr-2 ml-2">
+                          Make a Payment
+                        </div>
+                      ) : (
+                        <a
+                          className="flex items-center text-primary whitespace-nowrap mr-2 ml-2"
+                          href="#"
+                          onClick={() => {
+                            setCurrentOrderId({
+                              value: `${value.orderId}`,
+                              event: true
+                            });
+                            setLargeSlideOverSizePreview(true);
+                            setisPayNowVisible(true);
+                          }}
+                        >
+                          Make a Payment
+                        </a>
+                      )}
+
+                      <a
                         className="flex items-center text-primary whitespace-nowrap ml-2"
                         href="#"
                         onClick={() => {
-                  
-                          setDeleteConfirmationModal({ 
-                            show : true,
-                            id : value.orderId
+                          setDeleteConfirmationModal({
+                            show: true,
+                            id: value.orderId
                           });
-                          }
-                        }
-                        
+                        }}
                       >
                         <Lucide icon="Repeat" className="w-4 h-4 mr-1" />
                         Repeat the Order
@@ -532,7 +516,7 @@ function Main() {
         }}
       >
         <ModalHeader className="p-5">
-          <h1 className="font-medium text-base mr-auto">Order Details</h1>
+          <h1 className="text-lg font-medium mr-auto">Order Details</h1>
         </ModalHeader>
         <ModalBody>
           <div className="flex items-center mt-8">
@@ -815,14 +799,11 @@ function Main() {
                                           src={
                                             value?.prodRefId?.productImage.length > 0
                                               ? value.prodRefId?.productImage[0].url
-                                              : 
-                                              alternateImage
-
+                                              : alternateImage
                                           }
                                           onError={({ currentTarget }) => {
                                             currentTarget.onerror = null; // prevents looping
-                                            currentTarget.src =
-                                            alternateImage
+                                            currentTarget.src = alternateImage;
                                           }}
                                         />
                                       </div>
@@ -940,11 +921,18 @@ function Main() {
                     {$h.formatCurrency(orderDetails.totalAmount ? orderDetails.totalAmount : 0)}
                   </div>
                 </div>
+                <div className="flex items-center mt-3">
+                  <Lucide icon="CreditCard" className="w-4 h-4 text-slate-500 mr-2" />
+                  VAT
+                  <div className="ml-auto">
+                    {$h.formatCurrency(orderDetails.vat ? orderDetails.vat : 0)}
+                  </div>
+                </div>
                 <div className="flex items-center border-t border-slate-200/60 dark:border-darkmode-400 pt-5 mt-5 font-medium">
                   <Lucide icon="CreditCard" className="w-4 h-4 text-slate-500 mr-2" />
                   Grand Total:
                   <div className="ml-auto">
-                    {$h.formatCurrency(orderDetails.totalAmount ? orderDetails.totalAmount : 0)}
+                    {$h.formatCurrency(orderDetails.grossTotal ? orderDetails.grossTotal : 0)}
                   </div>
                 </div>
               </div>
@@ -999,7 +987,13 @@ function Main() {
             {/* BEGIN: Invoice */}
             <div className="intro-y box overflow-hidden mt-5" ref={componentRef}>
               <div className="flex flex-col lg:flex-row pt-10 px-5 sm:px-20 sm:pt-20 lg:pb-20 text-center sm:text-left">
-                <div className="font-semibold text-primary text-3xl">INVOICE</div>
+                <div className="font-semibold text-primary text-3xl">
+                  {orderDetails.hasOwnProperty("orderStatus")
+                    ? orderDetails.orderStatus == "approval"
+                      ? "Draft Invoice"
+                      : "Invoice"
+                    : ""}
+                </div>
 
                 <div className="mt-20 lg:mt-0 lg:ml-auto lg:text-right">
                   <div className="text-xl text-primary font-medium">
@@ -1031,9 +1025,7 @@ function Main() {
                 <div className="mt-10 lg:mt-0 lg:ml-auto lg:text-right">
                   <div className="text-base text-slate-500">Receipt</div>
                   <div className="text-lg text-primary font-medium mt-2">
-                    {orderDetails.hasOwnProperty("paymentRefId")
-                      ? orderDetails.paymentRefId.paymentId
-                      : " Null"}
+                    {orderDetails.invoiceNumber ? orderDetails.invoiceNumber : " Null"}
                   </div>
                   <div className="mt-1">
                     {moment(orderDetails.orderPlaced).utc().format("DD-MMM-YYYY")}
@@ -1106,7 +1098,7 @@ function Main() {
                   <div className="text-xl text-primary font-medium mt-2">
                     {$h.formatCurrency($h.FindTotal(orderDetails) + $h.CalculateVat(orderDetails))}
                   </div>
-                  <div className="mt-1">Taxes included</div>
+                  <div className="mt-1">VAT included</div>
                   <div className="text-xl text-primary font-small mt-1">
                     {$h.formatCurrency($h.CalculateVat(orderDetails))}
                   </div>
@@ -1127,7 +1119,7 @@ function Main() {
         onHidden={() => {
           setDeleteConfirmationModal({
             show: false,
-            id: null,
+            id: null
           });
         }}
       >
@@ -1143,24 +1135,21 @@ function Main() {
             <button
               type="button"
               onClick={() => {
-
-                
                 setDeleteConfirmationModal({
                   show: false,
-                  id: null,
+                  id: null
                 });
               }}
               className="btn btn-outline-secondary w-24 mr-1"
             >
               Cancel
             </button>
-            <button type="button" className="btn btn-success w-24"
-            onClick={() => {
-              handleReOrder(deleteConfirmationModal.id);
-
-
-            }
-            }
+            <button
+              type="button"
+              className="btn btn-success w-24"
+              onClick={() => {
+                handleReOrder(deleteConfirmationModal.id);
+              }}
             >
               Create
             </button>

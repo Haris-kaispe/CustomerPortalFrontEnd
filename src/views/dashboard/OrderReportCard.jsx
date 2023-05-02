@@ -43,7 +43,7 @@ const OrderReportCard = ({ OrderReport, Loading }) => {
       ) : Loading ? (
         <ReactLoading type="bubbles" color="#1E40AF" />
       ) : (
-        <div className="text-3xl font-medium leading-8 mt-6 mb-6">N/A</div>
+        <div className="text-3xl font-medium leading-8 mt-6 mb-6">-</div>
       )}
     </div>
   );

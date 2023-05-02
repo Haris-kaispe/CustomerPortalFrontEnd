@@ -16,7 +16,7 @@ const OpenOrdersCard = ({ OpenOrders, Loading }) => {
             ) : Loading ? (
               <ReactLoading type="bubbles" color="#1E40AF" />
             ) : (
-              <div className="text-3xl font-medium leading-8 mt-6">N/A</div>
+              <div className="text-3xl font-medium leading-8 mt-6">-</div>
             )}
           </div>
           <div className="text-base text-slate-500 mt-1">Open Orders</div>

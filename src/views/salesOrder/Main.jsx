@@ -36,8 +36,7 @@ import classnames from "classnames";
 import moment from "moment";
 import xlsx from "xlsx";
 
-import alternateImage from "../../assets/images/gallery.png"
-
+import alternateImage from "../../assets/images/gallery.png";
 
 function Main() {
   const TAG = "SALES_ORDER_LIST";
@@ -292,8 +291,7 @@ function Main() {
 
   const optionTab = {};
 
-  useEffect(() => {
-  }, [salesOrderList.docs]);
+  useEffect(() => {}, [salesOrderList.docs]);
 
   return (
     <>
@@ -781,8 +779,7 @@ function Main() {
                                         }
                                         onError={({ currentTarget }) => {
                                           currentTarget.onerror = null; // prevents looping
-                                          currentTarget.src =
-                                          alternateImage
+                                          currentTarget.src = alternateImage;
                                         }}
                                       />
                                     </div>
@@ -897,11 +894,18 @@ function Main() {
                     {$h.formatCurrency(orderDetails.totalAmount ? orderDetails.totalAmount : 0)}
                   </div>
                 </div>
+                <div className="flex items-center mt-3">
+                  <Lucide icon="CreditCard" className="w-4 h-4 text-slate-500 mr-2" />
+                  VAT
+                  <div className="ml-auto">
+                    {$h.formatCurrency(orderDetails.vat ? orderDetails.vat : 0)}
+                  </div>
+                </div>
                 <div className="flex items-center border-t border-slate-200/60 dark:border-darkmode-400 pt-5 mt-5 font-medium">
                   <Lucide icon="CreditCard" className="w-4 h-4 text-slate-500 mr-2" />
                   Grand Total:
                   <div className="ml-auto">
-                    {$h.formatCurrency(orderDetails.totalAmount ? orderDetails.totalAmount : 0)}
+                    {$h.formatCurrency(orderDetails.grossTotal ? orderDetails.grossTotal : 0)}
                   </div>
                 </div>
               </div>

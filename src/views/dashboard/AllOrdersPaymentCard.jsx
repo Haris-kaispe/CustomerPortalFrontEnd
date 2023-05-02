@@ -1,3 +1,4 @@
+import { helper as $h } from "@/utils";
 import { Lucide } from "@/base-components";
 import ReactLoading from "react-loading";
 import { memo } from "react";
@@ -13,12 +14,12 @@ const AllOrdersPaymentCard = ({ TotalOrdersPayment, Loading }) => {
           <div className="text-3xl font-medium leading-8 mt-6">
             {TotalOrdersPayment.TotalPayment ? (
               <div className="text-3xl font-medium leading-8 mt-6">
-                ${TotalOrdersPayment.TotalPayment}
+                {$h.formatCurrency(TotalOrdersPayment.TotalPayment)}
               </div>
             ) : Loading ? (
               <ReactLoading type="bubbles" color="#1E40AF" />
             ) : (
-              <div className="text-3xl font-medium leading-8 mt-6">N/A</div>
+              <div className="text-3xl font-medium leading-8 mt-6">-</div>
             )}
           </div>
           <div className="text-base text-slate-500 mt-1">All Orders Payment</div>
