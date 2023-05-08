@@ -1,4 +1,5 @@
 import {
+  ADD_NEW_ORDER_MANAGEMENT,
   ADD_NEW_ORDER_MANAGEMENT_FAIL,
   ADD_NEW_ORDER_MANAGEMENT_SUCCESS,
   DELETE_ORDER_MANAGEMENT_FAIL,
@@ -7,6 +8,7 @@ import {
   EXPORT_ALL_ORDERS_SUCCESS,
   GET_ORDER_DETAILS_FAIL,
   GET_ORDER_DETAILS_SUCCESS,
+  GET_ORDER_MANAGEMENT,
   GET_ORDER_MANAGEMENT_FAIL,
   GET_ORDER_MANAGEMENT_SUCCESS,
   SAVE_FILTERS,
@@ -20,7 +22,8 @@ const INIT_STATE = {
   allOrders: [],
   SavedDateRange: "",
   SavedOrderId: "",
-  SavedStatus: ""
+  SavedStatus: "",
+  added: false
 };
 
 const OrderManagementReducer = (state = INIT_STATE, action) => {
@@ -37,28 +40,43 @@ const OrderManagementReducer = (state = INIT_STATE, action) => {
         error: action.payload
       };
 
+    case ADD_NEW_ORDER_MANAGEMENT:
+      return {
+        ...state,
+        added: false
+      };
+
     case ADD_NEW_ORDER_MANAGEMENT_SUCCESS:
       return {
         ...state,
-        orderManagements: []
+        added: true
         // orderManagements: [...state.orderManagements, action.payload]
       };
 
     case ADD_NEW_ORDER_MANAGEMENT_FAIL:
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
+        added: false
+      };
+
+    case GET_ORDER_MANAGEMENT:
+      return {
+        ...state,
+        added: false
       };
 
     case GET_ORDER_MANAGEMENT_SUCCESS:
       return action.payload
         ? {
             ...state,
-            orderManagements: action.payload
+            orderManagements: action.payload,
+            added: false
           }
         : {
             ...state,
-            orderManagements: { message: "No Content Found" }
+            orderManagements: { message: "No Content Found" },
+            added: false
           };
 
     // return {
@@ -69,7 +87,8 @@ const OrderManagementReducer = (state = INIT_STATE, action) => {
     case GET_ORDER_MANAGEMENT_FAIL:
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
+        added: false
       };
 
     case UPDATE_ORDER_MANAGEMENT_SUCCESS:

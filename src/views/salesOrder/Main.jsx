@@ -835,11 +835,11 @@ function Main() {
                   Transaction Status:
                   {orderDetails.invoiceStatus == "unpaid" ? (
                     <span className="bg-danger/20 text-danger rounded px-2 ml-1">
-                      {orderDetails.invoiceStatus}
+                      {$h.capitalizeFirstLetter(orderDetails.invoiceStatus)}
                     </span>
                   ) : (
                     <span className="bg-success/20 text-success rounded px-2 ml-1">
-                      {orderDetails.invoiceStatus}
+                      {$h.capitalizeFirstLetter(orderDetails.invoiceStatus)}
                     </span>
                   )}
                 </div>
@@ -884,7 +884,7 @@ function Main() {
                   <div className="ml-auto">
                     {orderDetails.hasOwnProperty("paymentRefId")
                       ? orderDetails.paymentRefId.method
-                      : "Null"}
+                      : "N/A"}
                   </div>
                 </div>
                 <div className="flex items-center mt-3">

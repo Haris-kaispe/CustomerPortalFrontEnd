@@ -281,20 +281,17 @@ function Main() {
                 <th className="text-center whitespace-nowrap">INVOICE ID</th>
                 <th className="text-center whitespace-nowrap">DESCRIPTION</th>
                 <th className="text-center whitespace-nowrap">ORDER STATUS</th>
-                <th className="text-right whitespace-nowrap">
-                  <div className="pr-16">DATE PLACED</div>
-                </th>
-                <th className="whitespace-nowrap">TOTAL QTY</th>
-                <th className="whitespace-nowrap">EXPECTED DELIVERY</th>
-                <th className="whitespace-nowrap">INVOICE STATUS</th>
-
+                <th className="text-center whitespace-nowrap">DATE PLACED</th>
+                <th className="text-center whitespace-nowrap">TOTAL QTY</th>
+                <th className="text-center whitespace-nowrap">EXPECTED DELIVERY</th>
+                <th className="text-center whitespace-nowrap">INVOICE STATUS</th>
                 <th className="text-center whitespace-nowrap">ACTIONS</th>
               </tr>
             </thead>
             <tbody>
               {$_.take(orderManagement.docs, orderManagement.totalDocs).map((value, index) => (
                 <tr key={index} className="intro-x">
-                  <td className="w-40 !py-4">
+                  <td className="w-30 !py-4">
                     <div
                       className="underline decoration-dotted whitespace-nowrap"
                       onClick={() => {
@@ -315,7 +312,9 @@ function Main() {
                     </div>
                   </td>
 
-                  <td>{value.description ? value.description : "N/A"}</td>
+                  <td className="text-center truncate w-30">
+                    {value.description ? value.description : "-"}
+                  </td>
 
                   <td className="text-center">
                     <div
@@ -334,15 +333,15 @@ function Main() {
                     </div>
                   </td>
                   <td className="text-center">
-                    <div className="whitespace-nowrap pr-16 text-xs">
+                    <div className="whitespace-nowrap  text-xs">
                       {moment(value.orderPlaced).utc().format("DD-MMM-YYYY")}
                     </div>
                   </td>
-                  <td className="w-40 text-right">
-                    <div className="pr-16">{value.totalQuantity}</div>
+                  <td className="w-40 text-center">
+                    <div className="">{value.totalQuantity}</div>
                   </td>
                   <td>
-                    <div className="pr-16 text-xs">
+                    <div className="text-center text-xs">
                       {moment(value.expectedDeliveryDate).utc().format("DD-MMM-YYYY")}
                     </div>
                   </td>
@@ -1094,8 +1093,8 @@ function Main() {
                   <div className="text-xl text-primary font-small mt-1">
                     {$h.formatCurrency($h.CalculateVat(orderDetails))}
                   </div>
-                  <div className="text-base text-slate-500">Total Amount</div>
-                  <div className="text-xl text-primary font-medium mt-2">
+                  <div className="text-base text-slate-500 mt-2">Total Amount</div>
+                  <div className="text-xl text-primary font-medium mt-1">
                     {$h.formatCurrency($h.FindTotal(orderDetails) + $h.CalculateVat(orderDetails))}
                   </div>
                 </div>

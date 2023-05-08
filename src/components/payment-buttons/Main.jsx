@@ -10,6 +10,10 @@ const StripePayButton = ({ cartItems }) => {
 
   const token = JSON.parse(localStorage.getItem("authUser")) || "";
 
+  const openNewTab = (url) => {
+    window.open(url, "_blank");
+  };
+
   // axiosApi.defaults.headers.common["Authorization"] = `Bearer ${token.accessToken}`;
 
   const handleCheckout = () => {
@@ -28,11 +32,12 @@ const StripePayButton = ({ cartItems }) => {
       )
       .then((res) => {
         if (res.data.url) {
-          window.location.href = res.data.url;
+          openNewTab(res.data.url);
+
+          // window.location.href = res.data.url;
         }
       })
       .catch((err) => console.log(err.message));
-
   };
 
   // create request call with headers

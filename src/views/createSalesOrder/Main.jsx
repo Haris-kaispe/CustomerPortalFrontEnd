@@ -30,6 +30,10 @@ function Main() {
     orderDetails: state.OrderManagementReducer?.orderDetailsState
   }));
 
+  const { added } = useSelector((state) => ({
+    added: state.OrderManagementReducer?.added
+  }));
+
   const [getProductList, setProductList] = useState([{}]);
 
   const { QuantityofEachProduct } = useSelector((state) => ({
@@ -73,6 +77,13 @@ function Main() {
   }, [productList]);
 
   useEffect(() => {
+    if (added) {
+      var params = `?perPage=10&page=1`;
+      dispatch(onGetOrderManagement(params));
+    }
+  }, [added]);
+
+  useEffect(() => {
     if (submit && !validation.errors.products && !validation.errors.shippingAddress) {
       setSubmit(false);
 
@@ -96,8 +107,6 @@ function Main() {
       dispatch(clearCart());
       handleClickReset();
       setsubmission(false);
-      var params = `?perPage=10&page=1`;
-      dispatch(onGetOrderManagement(params));
     } else {
       setSubmit(false);
     }
@@ -239,9 +248,9 @@ function Main() {
 
       setAddressObj(addresses);
       setAddress(0);
-      // validation.setFieldValue("shippingAddress.name", addresses[0].name);
-      // validation.setFieldValue("shippingAddress.phone", addresses[0].phoneNumber);
-      // validation.setFieldValue("shippingAddress.address", addresses[0].address);
+      validation.setFieldValue("shippingAddress.name", addresses[0].name);
+      validation.setFieldValue("shippingAddress.phone", addresses[0].phoneNumber);
+      validation.setFieldValue("shippingAddress.address", addresses[0].address);
     }
 
     // try {
