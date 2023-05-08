@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as Yup from "yup";
 
 import {
@@ -22,6 +23,38 @@ import dom from "@left4code/tw-starter/dist/js/dom";
 import illustrationUrl from "@/assets/images/illustration.svg";
 import logoUrl from "@/assets/images/k.png";
 import { useFormik } from "formik";
+=======
+import DarkModeSwitcher from "@/components/dark-mode-switcher/Main";
+import dom from "@left4code/tw-starter/dist/js/dom";
+import logoUrl from "@/assets/images/k.png";
+import illustrationUrl from "@/assets/images/illustration.svg";
+import { useFormik } from "formik";
+import {
+  Row,
+  Col,
+  CardBody,
+  Card,
+  Alert,
+  Container,
+  Form,
+  Input,
+  FormFeedback,
+  Label
+} from "reactstrap";
+
+import { Link, Outlet, useLocation, useNavigate, Navigate } from "react-router-dom";
+
+import * as Yup from "yup";
+
+import { useSelector, useDispatch } from "react-redux";
+
+import { useEffect, useState } from "react";
+
+import { loginUser as PostLogin, loginWithAzure as PostLoginWithAzure } from "../../store/actions";
+
+import { PublicClientApplication } from "@azure/msal-browser";
+import { config } from "../../Config";
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
 const Login = (props) => {
   const history = useNavigate();
@@ -41,6 +74,55 @@ const Login = (props) => {
     error: state.LoginReducer.error
   }));
 
+<<<<<<< HEAD
+=======
+  const handleAzureLogin = (async) => {
+    const msalInstance = new PublicClientApplication({
+      auth: {
+        clientId: config.appId,
+        authority: config.authority,
+        redirectUri: config.redirectUri
+      },
+      cache: {
+        cacheLocation: "sessionStorage",
+        storeAuthStateInCookie: true
+      }
+    });
+
+    try {
+      const authCodeRequest = {
+        scopes: config.scopes,
+        redirectUri: config.redirectUri
+      };
+
+      msalInstance
+        .loginPopup(authCodeRequest)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+
+    // const authCodeRequest = {
+    //   scopes: config.scopes,
+    //   redirectUri: config.redirectUri
+    // };
+
+    // msalInstance
+    //   .acquireTokenRedirect(authCodeRequest)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
+
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   function handleAzureLokgin() {
     dispatch(PostLoginWithAzure(history));
   }
@@ -103,10 +185,16 @@ const Login = (props) => {
                     className="-intro-x w-1/2 -mt-16"
                     src={illustrationUrl}
                   />
+<<<<<<< HEAD
                   <div className="-intro-x text-white font-medium text-2xl leading-tight mt-10">
                     Seamless access. Secure login.
                     <br />
                     Your personalized solutions await in our <br /> customer portal.
+=======
+                  <div className="-intro-x text-white font-medium text-4xl leading-tight mt-10">
+                    A few more clicks to <br />
+                    sign in to your account.
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                   </div>
                 </div>
               </div>
@@ -119,8 +207,13 @@ const Login = (props) => {
                     Sign In
                   </h2>
                   <div className="intro-x mt-2 text-slate-400 xl:hidden text-center">
+<<<<<<< HEAD
                     Seamless access. Secure login. Your personalized solutions await in our customer
                     portal.
+=======
+                    A few more clicks to sign in to your account. Manage all your e-commerce
+                    accounts in one place
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                   </div>
                   <Alert color="danger" isOpen={errorResponse.isOpen}>
                     {errorResponse.message}
@@ -180,12 +273,19 @@ const Login = (props) => {
                       className="btn btn-primary py-3 px-4 w-full xl:w-25 xl:mr-3 align-top"
                       type="submit"
                     >
+<<<<<<< HEAD
                       Sign In
                     </button>
 
                     <h2 className="intro-x font-bold text-center xl:text-center">
                       <p className="mt-5">Or sign in with </p>
                     </h2>
+=======
+                      Login
+                    </button>
+
+                    <p className="mt-5 text-gray-600">Or sign in with:</p>
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
                     <button
                       type="button"
@@ -221,7 +321,11 @@ const Login = (props) => {
                           transform="rotate(-180 14 34)"
                         ></path>
                       </svg>
+<<<<<<< HEAD
                       <span className="ml-2">Sign In with Azure AD</span>
+=======
+                      <span className="ml-2">Login with Azure AD</span>
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                     </button>
                   </div>
 
@@ -229,7 +333,11 @@ const Login = (props) => {
                         Register
                 </button>*/}
 
+<<<<<<< HEAD
                   {/*<div className="intro-x mt-10 xl:mt-24 text-slate-600 dark:text-slate-500 text-center xl:text-left">
+=======
+                  <div className="intro-x mt-10 xl:mt-24 text-slate-600 dark:text-slate-500 text-center xl:text-left">
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                     By signin up, you agree to our{"  "}
                     <Link
                       id="TermsAndConditions"
@@ -243,7 +351,11 @@ const Login = (props) => {
                       {"  "}
                       Privacy Policy
                     </Link>
+<<<<<<< HEAD
               </div>*/}
+=======
+                  </div>
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                 </div>
               </div>
 

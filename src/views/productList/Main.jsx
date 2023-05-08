@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "toastr/build/toastr.min.css";
 
 import * as $_ from "lodash";
@@ -19,6 +20,29 @@ import Select from "react-select";
 import alternateImage from "../../assets/images/gallery.png";
 import classNames from "classnames";
 import toastr from "toastr";
+=======
+import { Lucide, Modal, ModalBody } from "@/base-components";
+
+import * as $_ from "lodash";
+import { useState, useEffect } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
+import Select from "react-select";
+
+import { helper as $h } from "@/utils";
+import {
+  getProductList as onGetProductList,
+  addNewProductList as onAddNewProductList,
+  updateProductList as onUpdateProductList,
+  deleteProductList as onDeleteProductList,
+  QuantityChange as onQuantityChange,
+  AddtoCart
+} from "../../store/actions";
+
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
+import classNames from "classnames";
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
 function Main() {
   const dispatch = useDispatch();
@@ -53,7 +77,11 @@ function Main() {
       dispatch(onGetProductList(params));
 
     setProductList(productList);
+<<<<<<< HEAD
   }, [dispatch, getCurrentPage, getPerPage]);
+=======
+  }, [productList, getCurrentPage, getPerPage]);
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
   const options = [
     { value: 10, label: "10" },
@@ -88,6 +116,7 @@ function Main() {
     dispatch(AddtoCart(product));
   };
 
+<<<<<<< HEAD
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       setName(e.target.value);
@@ -95,6 +124,8 @@ function Main() {
     }
   };
 
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   return (
     <>
       <h2 className="intro-y text-lg font-medium mt-10">Product List</h2>
@@ -113,15 +144,28 @@ function Main() {
                 type="text"
                 className="form-control w-48 box pr-10 "
                 value={getName}
+<<<<<<< HEAD
                 placeholder="Search By Title"
                 onChange={(e) => {
                   setName(e.target.value);
                 }}
                 onKeyDown={handleKeyDown}
+=======
+                placeholder="Search"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+              <Lucide
+                icon="Search"
+                className="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"
+                onClick={() => handleNameSearch()}
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
               />
             </div>
           </div>
           <button
+<<<<<<< HEAD
             className="btn btn-primary shadow-md mr-2 ml-5"
             onClick={() => handleNameSearch()}
           >
@@ -129,6 +173,8 @@ function Main() {
             Search
           </button>
           <button
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
             id="tabulator-html-filter-reset"
             type="button"
             className="btn btn-secondary w-full sm:w-16 mt-2 sm:mt-0 ml-3"
@@ -150,6 +196,7 @@ function Main() {
                     target="_blank"
                     alt="Image Not Found"
                     className="rounded-md"
+<<<<<<< HEAD
                     src={value.productImage[0]?.url ? value.productImage[0]?.url : alternateImage}
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null; // prevents looping
@@ -157,6 +204,20 @@ function Main() {
                     }}
                   />
 
+=======
+                    src={value.productImage[0].url}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src =
+                        "https://fiberopticassy.com/wp-content/uploads/sites/13/2021/09/white-image-copia.png";
+                    }}
+                  />
+                  {/* {faker.trueFalse[0] && (
+                    <span className="absolute top-0 bg-pending/80 text-white text-xs m-5 px-2 py-1 rounded z-10">
+                      Featured
+                    </span>
+                  )} */}
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                   <div className="absolute bottom-0 text-white px-5 pb-6 z-10">
                     <a href="" className="block font-medium text-base">
                       {value.name}
@@ -166,7 +227,11 @@ function Main() {
                 </div>
                 <div className="text-slate-600 dark:text-slate-500 mt-5">
                   <div className="flex items-center">
+<<<<<<< HEAD
                     <Lucide icon="DollarSign" className="w-4 h-4 mr-2" /> Price:{" "}
+=======
+                    <Lucide icon="Link" className="w-4 h-4 mr-2" /> Price:{" "}
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                     {$h.formatCurrency(value.price)}
                   </div>
 
@@ -189,12 +254,17 @@ function Main() {
                   </div>
                 </div>
               </div>
+<<<<<<< HEAD
 
               <div
                 className="flex mt-2 pb-5 xl:flex-col lg:flex-col items-center justify-between mx-8
               "
               >
                 <div className=" flex flex-row h-10 w-32 rounded-lg  bg-transparent">
+=======
+              <div className="flex items-center mt-2 pb-5">
+                <div className="ml-5 flex flex-row h-10 w-40 rounded-lg relative bg-transparent mt-1">
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                   <button
                     data-action="decrement"
                     className="bg-[#F1F5F9] text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
@@ -210,9 +280,13 @@ function Main() {
                     className="outline-none focus:outline-none text-center w-full bg-[#F1F5F9] font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 -webkit-appearance: none margin:0"
                     name="custom-input-number"
                     value={value.addToCart == undefined ? 0 : value.addToCart}
+<<<<<<< HEAD
                     // QuantityofEachProduct GET INDEX OF EACH PRODUCT AND ADD TO CART
                     // vakue= {QuantityofEachProduct(value.productGenId)
                     min={0}
+=======
+                    min="0"
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                     onChange={(e) => onInputChange("input", e.target.value, value)}
                     onKeyDown={(e) => exceptThisSymbols.includes(e.key) && e.preventDefault()}
                   ></input>
@@ -226,9 +300,15 @@ function Main() {
                     <span className="m-auto text-2xl font-thin">+</span>
                   </button>
                 </div>
+<<<<<<< HEAD
                 <div className="xl:mt-4 lg:mt-4 ">
                   <button
                     className="btn btn-primary shadow-md"
+=======
+                <div className="ml-5 md:ml-10 lg:ml-15 w-full xl:w-auto flex items-center xl:mt-0">
+                  <button
+                    className="btn btn-primary shadow-md mr-2"
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                     onClick={() => {
                       if (
                         !value.hasOwnProperty("CartVisibility") ||
@@ -255,6 +335,7 @@ function Main() {
           })}
         ></div>
         {/* END: Users Layout */}
+<<<<<<< HEAD
         <div className="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-6">
           <nav className="w-full sm:w-auto sm:mr-auto">
             <ul className="pagination">
@@ -332,6 +413,87 @@ function Main() {
             options={options}
           />
         </div>
+=======
+        {/* BEGIN: Pagination */}
+        {productList.hasOwnProperty("docs") ? (
+          <div className="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
+            <nav className="w-full sm:w-auto sm:mr-auto">
+              <ul className="pagination">
+                {productList.hasPrevPage ? (
+                  <div>
+                    <li className="page-item">
+                      <a className="page-link" href="#123" onClick={() => setCurrentPage(1)}>
+                        <Lucide icon="ChevronsLeft" className="w-4 h-4" />
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a
+                        className="page-link"
+                        href="#"
+                        onClick={() => setCurrentPage(productList.prevPage)}
+                      >
+                        <Lucide icon="ChevronLeft" className="w-4 h-4" />
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a
+                        className="page-link"
+                        href="#"
+                        onClick={() => setCurrentPage(productList.prevPage)}
+                      >
+                        {productList.prevPage}
+                      </a>
+                    </li>
+                  </div>
+                ) : null}
+                <li className="page-item active">
+                  <a className="page-link" href="#">
+                    {productList.page}
+                  </a>
+                </li>
+                {productList.hasNextPage ? (
+                  <div>
+                    <li className="page-item">
+                      <a
+                        className="page-link"
+                        href="#"
+                        onClick={() => setCurrentPage(productList.nextPage)}
+                      >
+                        {productList.nextPage}
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a
+                        className="page-link"
+                        href="#"
+                        onClick={() => setCurrentPage(productList.nextPage)}
+                      >
+                        <Lucide icon="ChevronRight" className="w-4 h-4" />
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a
+                        className="page-link"
+                        href="#123"
+                        onClick={() => setCurrentPage(productList.totalPages)}
+                      >
+                        <Lucide icon="ChevronsRight" className="w-4 h-4" />
+                      </a>
+                    </li>
+                  </div>
+                ) : null}
+              </ul>
+            </nav>
+
+            <Select
+              defaultValue={getPerPage}
+              onChange={(e) => setPerPage({ value: `${e.value}`, label: `${e.value}` })}
+              options={options}
+            />
+          </div>
+        ) : null}
+        {/* END: Pagination */}
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       </div>
       {/* BEGIN: Delete Confirmation Modal */}
       <Modal

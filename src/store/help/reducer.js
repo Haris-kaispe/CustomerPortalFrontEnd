@@ -1,4 +1,5 @@
 import {
+<<<<<<< HEAD
   ADD_NEW_CONTACT_FAIL,
   ADD_NEW_CONTACT_SUCCESS,
   CLEAR_ALL_IMAGE,
@@ -18,6 +19,23 @@ const INIT_STATE = {
   urls: [],
   error: null,
   loading: false
+=======
+  GET_HELP_SUCCESS,
+  GET_HELP_FAIL,
+  UPDATE_HELP_SUCCESS,
+  UPDATE_HELP_FAIL,
+  ADD_NEW_HELP_SUCCESS,
+  ADD_NEW_HELP_FAIL,
+  DELETE_HELP_SUCCESS,
+  DELETE_HELP_FAIL,
+  ADD_NEW_CONTACT_SUCCESS,
+  ADD_NEW_CONTACT_FAIL,
+} from "./actionTypes";
+
+const INIT_STATE = {
+  help: [],
+  contact: {},
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 };
 
 const HelpReducer = (state = INIT_STATE, action) => {
@@ -25,12 +43,17 @@ const HelpReducer = (state = INIT_STATE, action) => {
     case ADD_NEW_CONTACT_SUCCESS:
       return {
         ...state,
+<<<<<<< HEAD
         contact: [...state.contact, action.payload]
+=======
+        contact: [...state.contact, action.payload],
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case ADD_NEW_CONTACT_FAIL:
       return {
         ...state,
+<<<<<<< HEAD
         error: action.payload
       };
 
@@ -108,6 +131,63 @@ const HelpReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         error: action.payload
+=======
+        error: action.payload,
+      };
+
+    case ADD_NEW_HELP_SUCCESS:
+      return {
+        ...state,
+        help: [...state.help, action.payload],
+      };
+
+    case ADD_NEW_HELP_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case GET_HELP_SUCCESS:
+      return {
+        ...state,
+        help: action.payload,
+      };
+
+    case GET_HELP_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case UPDATE_HELP_SUCCESS:
+      return {
+        ...state,
+        help: state.help.map((data) => {
+          return data.code.toString() === action.payload.data.code.toString()
+            ? { data, ...action.payload.data }
+            : data;
+        }),
+      };
+
+    case UPDATE_HELP_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case DELETE_HELP_SUCCESS:
+      return {
+        ...state,
+        help: state.help.filter(
+          (data) => data.code.toString() !== action.payload.data.code.toString()
+        ),
+      };
+
+    case DELETE_HELP_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     default:

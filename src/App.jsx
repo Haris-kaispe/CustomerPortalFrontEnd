@@ -22,7 +22,10 @@ const App = (props) => {
                   isAuthProtected={false}
                   path={route.path}
                   exact
+<<<<<<< HEAD
                   role=""
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                 />
               }
             />
@@ -39,7 +42,10 @@ const App = (props) => {
                     component={route.component}
                     isAuthProtected={true}
                     path={route.path}
+<<<<<<< HEAD
                     role={route.role}
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                   />
                 }
               />
@@ -52,7 +58,11 @@ const App = (props) => {
 };
 
 App.propTypes = {
+<<<<<<< HEAD
   layout: PropTypes.any
+=======
+  layout: PropTypes.any,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 };
 
 export default App;

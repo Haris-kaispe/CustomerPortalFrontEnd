@@ -1,4 +1,5 @@
 import {
+<<<<<<< HEAD
   GET_CANCEL_ORDERS,
   GET_CANCEL_ORDERS_FAIL,
   GET_CANCEL_ORDERS_SUCCESS,
@@ -20,6 +21,22 @@ import {
   GET_TOTAL_ORDERS_PAYMENT_FAIL,
   GET_TOTAL_ORDERS_PAYMENT_SUCCESS,
   GET_TOTAL_ORDERS_SUCCESS
+=======
+  GET_TOTAL_ORDERS_SUCCESS,
+  GET_TOTAL_ORDERS_FAIL,
+  GET_OPEN_ORDERS_SUCCESS,
+  GET_OPEN_ORDERS_FAIL,
+  GET_CANCEL_ORDERS_SUCCESS,
+  GET_CANCEL_ORDERS_FAIL,
+  GET_TOTAL_ORDERS_PAYMENT_SUCCESS,
+  GET_TOTAL_ORDERS_PAYMENT_FAIL,
+  GET_TOP_PRODUCTS_SUCCESS,
+  GET_TOP_PRODUCTS_FAIL,
+  GET_MONTHLY_ORDER_REPORT_SUCCESS,
+  GET_MONTHLY_ORDER_REPORT_FAIL,
+  GET_SELL_ORDER_REPORT_SUCCESS,
+  GET_SELL_ORDER_REPORT_FAIL,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 } from "./actionTypes";
 
 const INIT_STATE = {
@@ -30,6 +47,7 @@ const INIT_STATE = {
   TopProducts: [],
   SalesReport: [],
   OrderReport: [],
+<<<<<<< HEAD
 
   TotalOrdersLoading: false,
   TotalOrdersLoadingError: null,
@@ -51,10 +69,13 @@ const INIT_STATE = {
 
   OrderReportLoading: false,
   OrderReportLoadingError: null
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 };
 
 const DashboardReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
+<<<<<<< HEAD
     case GET_TOTAL_ORDERS:
       return {
         ...state,
@@ -62,17 +83,23 @@ const DashboardReducer = (state = INIT_STATE, action) => {
         TotalOrdersLoadingError: null
       };
 
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     case GET_TOTAL_ORDERS_SUCCESS:
       return {
         ...state,
         TotalOrders: action.payload,
+<<<<<<< HEAD
         TotalOrdersLoading: false,
         TotalOrdersLoadingError: null
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_TOTAL_ORDERS_FAIL:
       return {
         ...state,
+<<<<<<< HEAD
         TotalOrdersLoading: false,
         TotalOrdersLoadingError: action.payload
       };
@@ -82,19 +109,26 @@ const DashboardReducer = (state = INIT_STATE, action) => {
         ...state,
         TotalOrdersPaymentLoading: true,
         TotalOrdersPaymentLoadingError: null
+=======
+        error: action.payload,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_TOTAL_ORDERS_PAYMENT_SUCCESS:
       return {
         ...state,
         TotalOrdersPayment: action.payload,
+<<<<<<< HEAD
         TotalOrdersPaymentLoading: false,
         TotalOrdersPaymentLoadingError: null
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_TOTAL_ORDERS_PAYMENT_FAIL:
       return {
         ...state,
+<<<<<<< HEAD
         TotalOrdersPaymentLoading: false,
         TotalOrdersPaymentLoadingError: action.payload
       };
@@ -104,19 +138,26 @@ const DashboardReducer = (state = INIT_STATE, action) => {
         ...state,
         OpenOrdersLoading: true,
         OpenOrdersLoadingError: null
+=======
+        error: action.payload,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_OPEN_ORDERS_SUCCESS:
       return {
         ...state,
         OpenOrders: action.payload,
+<<<<<<< HEAD
         OpenOrdersLoading: false,
         OpenOrdersLoadingError: null
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_OPEN_ORDERS_FAIL:
       return {
         ...state,
+<<<<<<< HEAD
         OpenOrdersLoading: false,
         OpenOrdersLoadingError: action.payload
       };
@@ -126,19 +167,26 @@ const DashboardReducer = (state = INIT_STATE, action) => {
         ...state,
         CancelOrdersLoading: true,
         CancelOrdersLoadingError: null
+=======
+        error: action.payload,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_CANCEL_ORDERS_SUCCESS:
       return {
         ...state,
         CancelOrders: action.payload,
+<<<<<<< HEAD
         CancelOrdersLoading: false,
         CancelOrdersLoadingError: null
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_CANCEL_ORDERS_FAIL:
       return {
         ...state,
+<<<<<<< HEAD
         CancelOrdersLoading: false,
         CancelOrdersLoadingError: action.payload
       };
@@ -148,19 +196,26 @@ const DashboardReducer = (state = INIT_STATE, action) => {
         ...state,
         TopProductsLoading: true,
         TopProductsLoadingError: null
+=======
+        error: action.payload,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_TOP_PRODUCTS_SUCCESS:
       return {
         ...state,
         TopProducts: action.payload,
+<<<<<<< HEAD
         TopProductsLoading: false,
         TopProductsLoadingError: null
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_TOP_PRODUCTS_FAIL:
       return {
         ...state,
+<<<<<<< HEAD
         TopProductsLoading: false,
         TopProductsLoadingError: action.payload
       };
@@ -170,19 +225,26 @@ const DashboardReducer = (state = INIT_STATE, action) => {
         ...state,
         SalesReportLoading: true,
         SalesReportLoadingError: null
+=======
+        error: action.payload,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_SELL_ORDER_REPORT_SUCCESS:
       return {
         ...state,
         SalesReport: action.payload,
+<<<<<<< HEAD
         SalesReportLoading: false,
         SalesReportLoadingError: null
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_SELL_ORDER_REPORT_FAIL:
       return {
         ...state,
+<<<<<<< HEAD
         SalesReportLoading: false,
         SalesReportLoadingError: action.payload
       };
@@ -192,21 +254,31 @@ const DashboardReducer = (state = INIT_STATE, action) => {
         ...state,
         OrderReportLoading: true,
         OrderReportLoadingError: null
+=======
+        error: action.payload,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_MONTHLY_ORDER_REPORT_SUCCESS:
       return {
         ...state,
         OrderReport: action.payload,
+<<<<<<< HEAD
         OrderReportLoading: false,
         OrderReportLoadingError: null
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_MONTHLY_ORDER_REPORT_FAIL:
       return {
         ...state,
+<<<<<<< HEAD
         OrderReportLoading: false,
         OrderReportLoadingError: action.payload
+=======
+        error: action.payload,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     default:

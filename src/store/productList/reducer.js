@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "toastr/build/toastr.min.css";
 
 import {
@@ -33,10 +34,29 @@ const getCart = () => {
     return [];
   }
 };
+=======
+import {
+  GET_PRODUCT_LIST_SUCCESS,
+  GET_PRODUCT_LIST_FAIL,
+  UPDATE_PRODUCT_LIST_SUCCESS,
+  UPDATE_PRODUCT_LIST_FAIL,
+  ADD_NEW_PRODUCT_LIST_SUCCESS,
+  ADD_NEW_PRODUCT_LIST_FAIL,
+  DELETE_PRODUCT_LIST_SUCCESS,
+  DELETE_PRODUCT_LIST_FAIL,
+  QUANTITY_CHANGE,
+  CLEAR_CART,
+  ADD_TO_CART,
+} from "./actionTypes";
+
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
 const INIT_STATE = {
   productList: {},
   QuantityofEachProduct: [],
+<<<<<<< HEAD
   loading: false,
   error: null,
   added: false,
@@ -46,10 +66,13 @@ const INIT_STATE = {
   imageUrls: [],
   imageLoading: false,
   imageError: null
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 };
 
 const ProductListReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
+<<<<<<< HEAD
     case ADD_NEW_PRODUCT_LIST:
       return {
         ...state,
@@ -110,6 +133,12 @@ const ProductListReducer = (state = INIT_STATE, action) => {
         imageLoading: false,
         imageError: action.payload,
         uploaded: false
+=======
+    case ADD_NEW_PRODUCT_LIST_SUCCESS:
+      return {
+        ...state,
+        productList: [...state.productList, action.payload],
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case QUANTITY_CHANGE:
@@ -139,6 +168,7 @@ const ProductListReducer = (state = INIT_STATE, action) => {
         } else if (action.payload.action === "decrement") {
           if (cartRecord[recIndex]["addToCart"] == 1) {
             cartRecord[recIndex]["addToCart"]--;
+<<<<<<< HEAD
             if (cartRecord[recIndex]["CartVisibility"]) {
               toastr.info("Item has been removed.");
               cartRecord[recIndex]["CartVisibility"] = false;
@@ -149,11 +179,18 @@ const ProductListReducer = (state = INIT_STATE, action) => {
             // toastr.info("Item has been removed.");
 
             // cartRecord.splice(recIndex, 1);
+=======
+            cartRecord[recIndex]["CartVisibility"] = false;
+            toastr.info("Item has been removed.");
+
+            cartRecord.splice(recIndex, 1);
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
           } else {
             // if (cartRecord[recIndex]["CartVisibility"]) {
             //   toastr.info("Item quantity has been changed");
             // }
 
+<<<<<<< HEAD
             if (
               Number(cartRecord[recIndex]["addToCart"]) !== 0 &&
               cartRecord[recIndex]["addToCart"] !== ""
@@ -161,6 +198,9 @@ const ProductListReducer = (state = INIT_STATE, action) => {
             ) {
               cartRecord[recIndex]["addToCart"]--;
             }
+=======
+            cartRecord[recIndex]["addToCart"]--;
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
           }
         } else if (action.payload.action === "remove") {
           cartRecord[recIndex]["addToCart"] = 0;
@@ -169,6 +209,7 @@ const ProductListReducer = (state = INIT_STATE, action) => {
           cartRecord.splice(recIndex, 1);
         } else if (action.payload.action === "input") {
           cartRecord[recIndex]["addToCart"] = action.payload.value;
+<<<<<<< HEAD
 
           if (
             Number(cartRecord[recIndex]["addToCart"]) === 0 ||
@@ -190,6 +231,20 @@ const ProductListReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         QuantityofEachProduct: cartRecord
+=======
+        }
+      }
+
+      return {
+        ...state,
+        QuantityofEachProduct: cartRecord,
+      };
+
+    case ADD_NEW_PRODUCT_LIST_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case ADD_TO_CART:
@@ -200,33 +255,51 @@ const ProductListReducer = (state = INIT_STATE, action) => {
       if (recIndexv2 == -1) {
         //do nothing
       } else {
+<<<<<<< HEAD
         if (
           Number(cartRecordv2[recIndexv2]["addToCart"]) > 0 &&
           cartRecordv2[recIndexv2]["addToCart"] !== ""
         ) {
           cartRecordv2[recIndexv2]["CartVisibility"] = true;
+=======
+        cartRecordv2[recIndexv2]["CartVisibility"] = true;
+        if (cartRecordv2[recIndexv2]["addToCart"] > 0) {
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
           toastr.success("Item has been added to cart");
         }
       }
 
       return {
         ...state,
+<<<<<<< HEAD
         QuantityofEachProduct: cartRecordv2
+=======
+        QuantityofEachProduct: cartRecordv2,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case GET_PRODUCT_LIST_SUCCESS:
       return action.payload
         ? {
             ...state,
+<<<<<<< HEAD
             productList: action.payload
           }
         : {
             ...state,
             productList: { message: "No Content Found" }
+=======
+            productList: action.payload,
+          }
+        : {
+            ...state,
+            productList: { message: "No Content Found" },
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
           };
     case GET_PRODUCT_LIST_FAIL:
       return {
         ...state,
+<<<<<<< HEAD
         error: action.payload
       };
 
@@ -234,11 +307,15 @@ const ProductListReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         updated: false
+=======
+        error: action.payload,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case UPDATE_PRODUCT_LIST_SUCCESS:
       return {
         ...state,
+<<<<<<< HEAD
         updated: true
 
         // productList: state.productList.map((data) => {
@@ -246,23 +323,39 @@ const ProductListReducer = (state = INIT_STATE, action) => {
         //     ? { data, ...action.payload.data }
         //     : data;
         // })
+=======
+        productList: state.productList.map((data) => {
+          return data.code.toString() === action.payload.data.code.toString()
+            ? { data, ...action.payload.data }
+            : data;
+        }),
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case UPDATE_PRODUCT_LIST_FAIL:
       return {
         ...state,
         error: action.payload,
+<<<<<<< HEAD
         updated: false
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case DELETE_PRODUCT_LIST_SUCCESS:
       return {
         ...state,
+<<<<<<< HEAD
         deleted: true
 
         // productList: state.productList.filter(
         //   (data) => data.code.toString() !== action.payload.data.code.toString()
         // )
+=======
+        productList: state.productList.filter(
+          (data) => data.code.toString() !== action.payload.data.code.toString()
+        ),
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case CLEAR_CART:
@@ -274,13 +367,18 @@ const ProductListReducer = (state = INIT_STATE, action) => {
 
       return {
         ...state,
+<<<<<<< HEAD
         QuantityofEachProduct: s
+=======
+        QuantityofEachProduct: s,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     case DELETE_PRODUCT_LIST_FAIL:
       return {
         ...state,
         error: action.payload,
+<<<<<<< HEAD
         deleted: false
       };
 
@@ -313,6 +411,8 @@ const ProductListReducer = (state = INIT_STATE, action) => {
         imageError: null,
         imageUrls: [],
         uploaded: false
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
     default:

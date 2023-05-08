@@ -23,6 +23,7 @@ export const ADD_HELP = "/contact/upload";
 export const UPDATE_HELP = "/contact/upload";
 export const DELETE_HELP = "/contact/upload";
 
+<<<<<<< HEAD
 export const UPLOAD_IMAGE = "/contact/upload";
 
 export const ADD_CONTACT = "/contact";
@@ -30,6 +31,11 @@ export const ADD_CONTACT = "/contact";
 export const GET_SPECIFIC_CONTACT = "/contact/specific";
 
 export const LOGIN = "/auth/signin";
+=======
+export const ADD_CONTACT = "/contact";
+
+export const LOGIN = "/signin";
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
 export const EXPORT_ALL_ORDERS = "/order-management/export/AllOrders";
 
@@ -51,6 +57,7 @@ export const SALES_ORDER_REPORT_HISTORY = "/dashboard/salesOrderReportHistory";
 
 export const MONTH_ORDER_REPORT = "/dashboard/monthOrderReport";
 
+<<<<<<< HEAD
 export const AZURE_LOGIN = "/auth/loginViaAzureSSO";
 
 export const QUANTITY = "/notification/getRemainingUsers";
@@ -71,3 +78,6 @@ export const GET_VENDOR_LIST = "/vendor";
 
 export const SHIPPING_INFO = "/users";
 // /:userId/shippingInfo/:specificInfoId";
+=======
+export const AZURE_LOGIN = "http://172.16.8.122:3000/api/v1/tenant/loginViaAzureSSO";
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75

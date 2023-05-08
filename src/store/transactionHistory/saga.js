@@ -25,14 +25,22 @@ import {
 import {
   addNewTransactionHistory,
   deleteTransactionHistory,
+<<<<<<< HEAD
   getOrderManagement,
+=======
+  getTransactionHistory,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   updateTransactionHistory,
   getAllTransaction,
 } from "../../helpers/backend_helper";
 
 function* fetchTransactionHistory({ payload: rec }) {
   try {
+<<<<<<< HEAD
     const response = yield call(getOrderManagement, rec);
+=======
+    const response = yield call(getTransactionHistory, rec);
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     yield put(getTransactionHistorySuccess(response));
   } catch (error) {
     yield put(getTransactionHistoryFail(error));

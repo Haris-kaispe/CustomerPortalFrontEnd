@@ -1,6 +1,9 @@
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
+<<<<<<< HEAD
 import jwt from "jwt-decode"; // import dependency
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
 dayjs.extend(duration);
 
@@ -18,7 +21,10 @@ const helpers = {
   formatDate(date, format) {
     return dayjs(date).format(format);
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   capitalizeFirstLetter(string) {
     if (string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
@@ -125,7 +131,11 @@ const helpers = {
       days: days.toString().length < 2 ? "0" + days : days,
       hours: hours.toString().length < 2 ? "0" + hours : hours,
       minutes: minutes.toString().length < 2 ? "0" + minutes : minutes,
+<<<<<<< HEAD
       seconds: seconds.toString().length < 2 ? "0" + seconds : seconds
+=======
+      seconds: seconds.toString().length < 2 ? "0" + seconds : seconds,
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     };
   },
   isset(obj) {
@@ -187,6 +197,7 @@ const helpers = {
       return (total / 100) * 5;
     } else return 0;
   },
+<<<<<<< HEAD
   isNullObject(obj) {
     return obj === null || typeof obj === "undefined" || Object.keys(obj).length === 0;
   },
@@ -219,6 +230,11 @@ const helpers = {
     }
     return "";
   }
+=======
+  currencyCodeFormat(props) {
+    return `$${props}.00`;
+  },
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 };
 
 export { helpers as helper };

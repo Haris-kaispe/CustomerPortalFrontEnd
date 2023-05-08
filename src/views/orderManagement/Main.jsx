@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as $_ from "lodash";
 
 import { helper as $h, ConstructJSON as JsonData, keyValue as kv } from "@/utils";
@@ -24,6 +25,35 @@ import { useReactToPrint } from "react-to-print";
 function Main() {
   const componentRef = useRef();
   const navigate = useNavigate();
+=======
+import { useEffect, useState, useRef } from "react";
+
+import Select from "react-select";
+import * as $_ from "lodash";
+import classnames from "classnames";
+import { useSelector, useDispatch } from "react-redux";
+
+import moment from "moment";
+
+import { helper as $h, keyValue as kv, ConstructJSON as JsonData } from "@/utils";
+
+import { ExportJsonCsv } from "react-export-json-csv";
+
+import { useReactToPrint } from "react-to-print";
+
+import { Lucide, Tippy, Modal, ModalBody, Litepicker, ModalHeader } from "@/base-components";
+
+import {
+  getOrderDetails as onGetOrderDetails,
+  getOrderManagement as onGetOrderManagement,
+  getAllOrders
+} from "../../store/actions";
+
+import jsPDF from "jspdf";
+
+function Main() {
+  const componentRef = useRef();
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   const handlePrint = useReactToPrint({
     content: () => componentRef.current
   });
@@ -42,6 +72,7 @@ function Main() {
     allOrders: state.OrderManagementReducer?.allOrders
   }));
 
+<<<<<<< HEAD
   const { SavedDateRange, SavedOrderId, SavedStatus } = useSelector(
     (state) => state.OrderManagementReducer
   );
@@ -61,40 +92,74 @@ function Main() {
   const [getCurrentPage, setCurrentPage] = useState(1);
   const [largeSlideOverSizePreview, setLargeSlideOverSizePreview] = useState(false);
   const [getPerPage, setPerPage] = useState({ value: 10, label: "10" });
+=======
+  const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
+  const [basicSlideOverPreview, setBasicSlideOverPreview] = useState(false);
+  const [getOrderId, setOrderId] = useState("");
+  const [getDateRange, setDateRange] = useState("");
+  const [getStatus, setStatus] = useState({ value: "", label: "" });
+  const [getOrderManagement, setOrderManagement] = useState({});
+  const [getCurrentPage, setCurrentPage] = useState(1);
+  const [largeSlideOverSizePreview, setLargeSlideOverSizePreview] = useState(false);
+  const [getPerPage, setPerPage] = useState({ value: "10", label: "10" });
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   const [getOrderDetails, setOrderDetails] = useState([]);
   const [isPayNowVisible, setisPayNowVisible] = useState(false);
   const [getCurrentOrderId, setCurrentOrderId] = useState({
     value: "",
     event: false
   });
+<<<<<<< HEAD
   const [reorder, setReorder] = useState({ id: "", event: false });
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
   useEffect(() => {
     var date = getDateRange.split("-");
 
+<<<<<<< HEAD
     if (parseInt(getPerPage.value) !== orderManagement.limit) {
+=======
+    if (getPerPage.value != orderManagement.limit) {
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       setCurrentPage(1);
       var params = `?perPage=${getPerPage.value}&page=1`;
       params += getOrderId ? `&orderId=${getOrderId}` : "";
       params += getStatus.value != "" ? `&orderStatus=${getStatus}` : "";
+<<<<<<< HEAD
       params += date[0] != date[1] ? `&dateRange=${getDateRange.replace(/\s+/g, "")}` : "";
+=======
+      params += date[0] != date[1] ? `&date_placed=${getDateRange}` : "";
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     } else {
       var params = `?perPage=${getPerPage.value}&page=${getCurrentPage}`;
       params += getOrderId ? `&orderId=${getOrderId}` : "";
       params += getStatus.value != "" ? `&orderStatus=${getStatus}` : "";
+<<<<<<< HEAD
       params += date[0] != date[1] ? `&dateRange=${getDateRange.replace(/\s+/g, "")}` : "";
+=======
+      params += date[0] != date[1] ? `&date_placed=${getDateRange}` : "";
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     }
     if (orderManagement.hasOwnProperty("message")) {
     } else if (
       !orderManagement.hasOwnProperty("docs") ||
       getCurrentPage != orderManagement.page ||
+<<<<<<< HEAD
       parseInt(getPerPage.value) !== orderManagement.limit
+=======
+      getPerPage.value != orderManagement.limit
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     ) {
       dispatch(onGetOrderManagement(params));
     }
 
     setOrderManagement(orderManagement);
+<<<<<<< HEAD
   }, [dispatch, getCurrentPage, getPerPage]);
+=======
+  }, [orderManagement, getCurrentPage, getPerPage]);
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
   useEffect(() => {
     if (getCurrentOrderId.event) {
@@ -117,6 +182,7 @@ function Main() {
     var date = getDateRange.split("-");
 
     param += getOrderId ? `&orderId=${getOrderId}` : "";
+<<<<<<< HEAD
     param += getStatus !== "" ? `&orderStatus=${getStatus.value}` : "";
     param += date && date[0] != date[1] ? `&dateRange=${getDateRange.replace(/\s+/g, "")}` : "";
     dispatch(
@@ -152,11 +218,23 @@ function Main() {
       })
     );
 
+=======
+    param += getStatus.value != "" ? `&orderStatus=${getStatus}` : "";
+    param += date[0] != date[1] ? `&date_placed=${getDateRange}` : "";
+    dispatch(onGetOrderManagement(param));
+  };
+  const handleResetFilter = () => {
+    setOrderId("");
+    setStatus({ value: "", label: "" });
+    setDateRange("");
+    let param = `?perPage=${getPerPage}&page=1`;
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     dispatch(onGetOrderManagement(param));
     setOrderManagement(orderManagement);
     // setTransactionHistory(transactionHistory);
   };
 
+<<<<<<< HEAD
   function handleReOrder(id) {
     setDeleteConfirmationModal({
       show: false,
@@ -175,6 +253,8 @@ function Main() {
     // ..//});
   } //
 
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   return (
     <>
       <h2 className="intro-y text-lg font-medium mt-10">Order Management</h2>
@@ -185,7 +265,11 @@ function Main() {
               <input
                 type="text"
                 className="form-control w-48 box pr-10 "
+<<<<<<< HEAD
                 placeholder="Search By Order Id..."
+=======
+                placeholder="Search by Order Id..."
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                 value={getOrderId}
                 onChange={(e) => {
                   setOrderId(e.target.value);
@@ -225,10 +309,16 @@ function Main() {
                   fontWeight: 400
                 })
               }}
+<<<<<<< HEAD
               value={getStatus}
               onChange={(e) => {
                 setStatus(e);
                 // setStatus(e.value);
+=======
+              value={getStatus.value}
+              onChange={(e) => {
+                setStatus(e.value);
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
               }}
               options={kv.optionsOrderStatus}
             />
@@ -278,7 +368,10 @@ function Main() {
             <thead>
               <tr>
                 <th className="whitespace-nowrap">ORDER ID</th>
+<<<<<<< HEAD
                 <th className="text-center whitespace-nowrap">INVOICE ID</th>
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                 <th className="text-center whitespace-nowrap">DESCRIPTION</th>
                 <th className="text-center whitespace-nowrap">ORDER STATUS</th>
                 <th className="text-right whitespace-nowrap">
@@ -309,11 +402,14 @@ function Main() {
                       {value.orderId}
                     </div>
                   </td>
+<<<<<<< HEAD
                   <td className="text-center">
                     <div className="flex items-center justify-center whitespace-nowrap text-center">
                       {value?.invoiceNumber ? value?.invoiceNumber : "-"}
                     </div>
                   </td>
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
                   <td>{value.description ? value.description : "N/A"}</td>
 
@@ -374,6 +470,7 @@ function Main() {
                           setisPayNowVisible(false);
                         }}
                       >
+<<<<<<< HEAD
                         {value.orderStatus == "approval" ? " Draft Invoice" : "View Invoice"}
                       </a>
 
@@ -399,14 +496,38 @@ function Main() {
                         </a>
                       )}
 
+=======
+                        Print Invoice
+                      </a>
+                      {}
+                      <a
+                        className="flex items-center text-primary whitespace-nowrap mr-2 ml-2"
+                        href="#"
+                        onClick={() => {
+                          setCurrentOrderId({
+                            value: `${value.orderId}`,
+                            event: true
+                          });
+                          setLargeSlideOverSizePreview(true);
+                          setisPayNowVisible(true);
+                        }}
+                      >
+                        Make a Payment
+                      </a>
+                      {}
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                       <a
                         className="flex items-center text-primary whitespace-nowrap ml-2"
                         href="#"
                         onClick={() => {
+<<<<<<< HEAD
                           setDeleteConfirmationModal({
                             show: true,
                             id: value.orderId
                           });
+=======
+                          setDeleteConfirmationModal(true);
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                         }}
                       >
                         <Lucide icon="Repeat" className="w-4 h-4 mr-1" />
@@ -514,7 +635,11 @@ function Main() {
         }}
       >
         <ModalHeader className="p-5">
+<<<<<<< HEAD
           <h1 className="text-lg font-medium mr-auto">Order Details</h1>
+=======
+          <h1 className="font-medium text-base mr-auto">Order Details</h1>
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
         </ModalHeader>
         <ModalBody>
           <div className="flex items-center mt-8">
@@ -782,6 +907,7 @@ function Main() {
                       </tr>
                     </thead>
                     <tbody>
+<<<<<<< HEAD
                       {orderDetails
                         ? orderDetails.hasOwnProperty("products") &&
                           orderDetails.products.length > 0
@@ -826,6 +952,46 @@ function Main() {
                               );
                             })
                           : null
+=======
+                      {orderDetails.hasOwnProperty("products")
+                        ? $_.take(orderDetails.products, orderDetails.products.length).map(
+                            (value, key) => (
+                              <tr key={key}>
+                                <td className="!py-4">
+                                  <div className="flex items-center">
+                                    <div className="w-10 h-10 image-fit zoom-in">
+                                      <Tippy
+                                        tag="img"
+                                        className="rounded-lg border-2 border-white shadow-md tooltip"
+                                        src={value.prodRefId.productImage[0].url}
+                                        onError={({ currentTarget }) => {
+                                          currentTarget.onerror = null; // prevents looping
+                                          currentTarget.src =
+                                            "https://fiberopticassy.com/wp-content/uploads/sites/13/2021/09/white-image-copia.png";
+                                        }}
+                                      />
+                                    </div>
+                                    <a href="" className="font-medium whitespace-nowrap ml-4">
+                                      {value.prodRefId.name}
+                                    </a>
+                                  </div>
+                                </td>
+                                <td className="text-right">
+                                  {$h.formatCurrency(value.unit_price)}
+                                </td>
+                                <td className="text-right">{value.quantity}</td>
+                                <td className="text-right">
+                                  {value.hasOwnProperty("prodRefId")
+                                    ? value.prodRefId.unitOfMeasure
+                                    : null}
+                                </td>
+                                <td className="text-right">
+                                  {$h.formatCurrency(value.unit_price * value.quantity)}
+                                </td>
+                              </tr>
+                            )
+                          )
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                         : null}
                     </tbody>
                   </table>
@@ -843,6 +1009,7 @@ function Main() {
                 </div>
                 <div className="flex items-center">
                   <Lucide icon="Clipboard" className="w-4 h-4 text-slate-500 mr-2" />
+<<<<<<< HEAD
                   Order Id: {orderDetails.orderId}
                 </div>
                 <div className="flex items-center mt-3">
@@ -852,17 +1019,43 @@ function Main() {
                 <div className="flex items-center mt-3">
                   <Lucide icon="Calendar" className="w-4 h-4 text-slate-500 mr-2" />
                   Purchase Date: {moment(orderDetails.orderPlaced).utc().format("DD-MMM-YYYY")}
+=======
+                  Order Id:
+                  <a href="" className="underline decoration-dotted ml-1">
+                    {orderDetails.orderId}
+                  </a>
+                </div>
+                <div className="flex items-center mt-3">
+                  <Lucide icon="Clipboard" className="w-4 h-4 text-slate-500 mr-2" />
+                  Invoice Id:
+                  {orderDetails.hasOwnProperty("paymentRefId")
+                    ? orderDetails.paymentRefId.paymentId
+                    : " Null"}
+                </div>
+                <div className="flex items-center mt-3">
+                  <Lucide icon="Calendar" className="w-4 h-4 text-slate-500 mr-2" />
+                  Purchase Date:
+                  {moment(orderDetails.orderPlaced).utc().format("DD-MMM-YYYY")}
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                 </div>
                 <div className="flex items-center mt-3">
                   <Lucide icon="Clock" className="w-4 h-4 text-slate-500 mr-2" />
                   Transaction Status:
                   {orderDetails.invoiceStatus == "unpaid" ? (
                     <span className="bg-danger/20 text-danger rounded px-2 ml-1">
+<<<<<<< HEAD
                       {$h.capitalizeFirstLetter(orderDetails.invoiceStatus)}
                     </span>
                   ) : (
                     <span className="bg-success/20 text-success rounded px-2 ml-1">
                       {$h.capitalizeFirstLetter(orderDetails.invoiceStatus)}
+=======
+                      {orderDetails.invoiceStatus}
+                    </span>
+                  ) : (
+                    <span className="bg-success/20 text-success rounded px-2 ml-1">
+                      {orderDetails.invoiceStatus}
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                     </span>
                   )}
                 </div>
@@ -907,7 +1100,11 @@ function Main() {
                   <div className="ml-auto">
                     {orderDetails.hasOwnProperty("paymentRefId")
                       ? orderDetails.paymentRefId.method
+<<<<<<< HEAD
                       : "N/A"}
+=======
+                      : "Null"}
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                   </div>
                 </div>
                 <div className="flex items-center mt-3">
@@ -917,6 +1114,7 @@ function Main() {
                     {$h.formatCurrency(orderDetails.totalAmount ? orderDetails.totalAmount : 0)}
                   </div>
                 </div>
+<<<<<<< HEAD
                 <div className="flex items-center mt-3">
                   <Lucide icon="CreditCard" className="w-4 h-4 text-slate-500 mr-2" />
                   VAT
@@ -924,11 +1122,17 @@ function Main() {
                     {$h.formatCurrency(orderDetails.vat ? orderDetails.vat : 0)}
                   </div>
                 </div>
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                 <div className="flex items-center border-t border-slate-200/60 dark:border-darkmode-400 pt-5 mt-5 font-medium">
                   <Lucide icon="CreditCard" className="w-4 h-4 text-slate-500 mr-2" />
                   Grand Total:
                   <div className="ml-auto">
+<<<<<<< HEAD
                     {$h.formatCurrency(orderDetails.grossTotal ? orderDetails.grossTotal : 0)}
+=======
+                    {$h.formatCurrency(orderDetails.totalAmount ? orderDetails.totalAmount : 0)}
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                   </div>
                 </div>
               </div>
@@ -983,6 +1187,7 @@ function Main() {
             {/* BEGIN: Invoice */}
             <div className="intro-y box overflow-hidden mt-5" ref={componentRef}>
               <div className="flex flex-col lg:flex-row pt-10 px-5 sm:px-20 sm:pt-20 lg:pb-20 text-center sm:text-left">
+<<<<<<< HEAD
                 <div className="font-semibold text-primary text-3xl">
                   {orderDetails.hasOwnProperty("orderStatus")
                     ? orderDetails.orderStatus == "approval"
@@ -990,6 +1195,9 @@ function Main() {
                       : "Invoice"
                     : ""}
                 </div>
+=======
+                <div className="font-semibold text-primary text-3xl">INVOICE</div>
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
                 <div className="mt-20 lg:mt-0 lg:ml-auto lg:text-right">
                   <div className="text-xl text-primary font-medium">
@@ -1021,7 +1229,13 @@ function Main() {
                 <div className="mt-10 lg:mt-0 lg:ml-auto lg:text-right">
                   <div className="text-base text-slate-500">Receipt</div>
                   <div className="text-lg text-primary font-medium mt-2">
+<<<<<<< HEAD
                     {orderDetails.invoiceNumber ? orderDetails.invoiceNumber : "N/A"}
+=======
+                    {orderDetails.hasOwnProperty("paymentRefId")
+                      ? orderDetails.paymentRefId.paymentId
+                      : " Null"}
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                   </div>
                   <div className="mt-1">
                     {moment(orderDetails.orderPlaced).utc().format("DD-MMM-YYYY")}
@@ -1050,7 +1264,11 @@ function Main() {
                                     <td className="!py-4">
                                       <div className="flex items-center">
                                         <a href="" className="font-medium whitespace-nowrap ml-4">
+<<<<<<< HEAD
                                           {value.prodRefId?.name || "N/A"}
+=======
+                                          {value.prodRefId.name}
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                                         </a>
                                       </div>
                                     </td>
@@ -1061,7 +1279,11 @@ function Main() {
                                     <td className="text-right">
                                       {" "}
                                       {value.hasOwnProperty("prodRefId")
+<<<<<<< HEAD
                                         ? value.prodRefId?.unitOfMeasure || "N/A"
+=======
+                                        ? value.prodRefId.unitOfMeasure
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                                         : null}
                                     </td>
                                     <td className="text-right">
@@ -1090,20 +1312,36 @@ function Main() {
                   <div className="mt-1">Code : {import.meta.env.VITE_BANK_ACCOUNT_CODE}</div>
                 </div>
                 <div className="text-center sm:text-right sm:ml-auto">
+<<<<<<< HEAD
                   <div className="mt-1">VAT included</div>
                   <div className="text-xl text-primary font-small mt-1">
                     {$h.formatCurrency($h.CalculateVat(orderDetails))}
                   </div>
+=======
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                   <div className="text-base text-slate-500">Total Amount</div>
                   <div className="text-xl text-primary font-medium mt-2">
                     {$h.formatCurrency($h.FindTotal(orderDetails) + $h.CalculateVat(orderDetails))}
                   </div>
+<<<<<<< HEAD
                 </div>
               </div>
               {isPayNowVisible ? (
                 <div>
                   <StripePayButton cartItems={orderDetails} />
                 </div>
+=======
+                  <div className="mt-1">Taxes included</div>
+                  <div className="text-xl text-primary font-small mt-1">
+                    {$h.formatCurrency($h.CalculateVat(orderDetails))}
+                  </div>
+                </div>
+              </div>
+              {isPayNowVisible ? (
+                <button className="btn btn-primary shadow-md mr-16 float-right mb-6">
+                  <Lucide icon="CreditCard" className="w-4 h-4 mr-2 " /> Pay Now
+                </button>
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
               ) : null}
             </div>
             {/* END: Invoice */}
@@ -1111,12 +1349,18 @@ function Main() {
         </ModalBody>
       </Modal>
       <Modal
+<<<<<<< HEAD
         show={deleteConfirmationModal.show}
         onHidden={() => {
           setDeleteConfirmationModal({
             show: false,
             id: null
           });
+=======
+        show={deleteConfirmationModal}
+        onHidden={() => {
+          setDeleteConfirmationModal(false);
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
         }}
       >
         <ModalBody className="p-0">
@@ -1131,15 +1375,20 @@ function Main() {
             <button
               type="button"
               onClick={() => {
+<<<<<<< HEAD
                 setDeleteConfirmationModal({
                   show: false,
                   id: null
                 });
+=======
+                setDeleteConfirmationModal(false);
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
               }}
               className="btn btn-outline-secondary w-24 mr-1"
             >
               Cancel
             </button>
+<<<<<<< HEAD
             <button
               type="button"
               className="btn btn-success w-24"
@@ -1147,6 +1396,9 @@ function Main() {
                 handleReOrder(deleteConfirmationModal.id);
               }}
             >
+=======
+            <button type="button" className="btn btn-success w-24">
+>>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
               Create
             </button>
           </div>
