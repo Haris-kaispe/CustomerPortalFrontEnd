@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import * as $_ from "lodash";
 
 import { ConstructJSON as JsonData, keyValue as kv } from "@/utils";
@@ -28,54 +27,12 @@ import classnames from "classnames";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import xlsx from "xlsx";
-=======
-import { Lucide, Litepicker, Modal, ModalHeader, Tippy, ModalBody } from "@/base-components";
-
-import classnames from "classnames";
-
-import moment from "moment";
-
-import xlsx from "xlsx";
-import { useEffect, useRef, createRef, useState } from "react";
-
-import { helper as $h } from "@/utils";
-
-import * as $_ from "lodash";
-
-import { useSelector, useDispatch } from "react-redux";
-
-import { ReactTabulator, reactFormatter } from "react-tabulator";
-
-import Select from "react-select";
-
-import {
-  getSalesOrderList as onGetSalesOrderList,
-  addNewSalesOrderList as onAddNewSalesOrderList,
-  updateSalesOrderList as onUpdateSalesOrderList,
-  deleteSalesOrderList as onDeleteSalesOrderList,
-  getOrderDetails as onGetOrderDetails,
-  getAllOrders
-} from "../../store/actions";
-
-import { ExportJsonCsv } from "react-export-json-csv";
-
-import { keyValue as kv, ConstructJSON as JsonData } from "@/utils";
-
-import {
-  OrderStatusFormatter,
-  pmidFormatter,
-  PaymentStatusFormatter
-} from "../../utils/formaters.jsx";
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
 function Main() {
   const TAG = "SALES_ORDER_LIST";
 
   const dispatch = useDispatch();
-<<<<<<< HEAD
   const navigate = useNavigate();
-=======
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
   const { salesOrderList } = useSelector((state) => ({
     salesOrderList: state.SalesOrderListReducer?.salesOrderLists
@@ -95,10 +52,7 @@ function Main() {
   const [getPerPage, setPerPage] = useState({ value: "10", label: "10" });
   const [getSalesOrderList, setSalesOrderList] = useState([]);
   const [getOrderDetails, setOrderDetails] = useState([]);
-<<<<<<< HEAD
   const [reorder, setReorder] = useState({ id: "", event: false });
-=======
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
   const [getOrderId, setOrderId] = useState("");
   const [getDateRange, setDateRange] = useState("");
@@ -127,40 +81,24 @@ function Main() {
       params += getOrderId ? `&orderId=${getOrderId}` : "";
       params += getStatus.value != "" ? `&orderStatus=${getStatus}` : "";
       params += getPaymentStatus.value != "" ? `&invoiceStatus=${getPaymentStatus}` : "";
-<<<<<<< HEAD
       params += date[0] != date[1] ? `&dateRange=${getDateRange.replace(/\s+/g, "")}` : "";
-=======
-      params += date[0] != date[1] ? `&date_placed=${getDateRange}` : "";
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     } else {
       var params = `?perPage=${getPerPage.value}&page=${getCurrentPage}`;
       params += getOrderId ? `&orderId=${getOrderId}` : "";
       params += getStatus.value != "" ? `&orderStatus=${getStatus}` : "";
       params += getPaymentStatus.value != "" ? `&invoiceStatus=${getPaymentStatus}` : "";
-<<<<<<< HEAD
       params += date[0] != date[1] ? `&dateRange=${getDateRange.replace(/\s+/g, "")}` : "";
-=======
-      params += date[0] != date[1] ? `&date_placed=${getDateRange}` : "";
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     }
     if (salesOrderList.hasOwnProperty("message")) {
     } else if (
       !salesOrderList.hasOwnProperty("docs") ||
       getCurrentPage != salesOrderList.page ||
       getPerPage.value != salesOrderList.limit
-<<<<<<< HEAD
     ) {
       dispatch(onGetSalesOrderList(params));
     }
     setSalesOrderList(salesOrderList);
   }, [dispatch, getCurrentPage, getPerPage]);
-=======
-    )
-      dispatch(onGetSalesOrderList(params));
-
-    setSalesOrderList(salesOrderList);
-  }, [salesOrderList, getCurrentPage, getPerPage]);
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
   useEffect(() => {
     if (!allOrders.length) {
@@ -169,7 +107,6 @@ function Main() {
   }, [allOrders]);
 
   useEffect(() => {
-<<<<<<< HEAD
     if (reorder.event) {
       const { id } = reorder;
       setReorder({ id: "", event: false });
@@ -178,8 +115,6 @@ function Main() {
   }, [reorder]);
 
   useEffect(() => {
-=======
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     if (getCurrentOrderId.event) {
       let param = `/${getCurrentOrderId.value}`;
       dispatch(onGetOrderDetails(param));
@@ -210,11 +145,7 @@ function Main() {
     {
       title: "Payment Status",
       field: "invoiceStatus",
-<<<<<<< HEAD
       with: 20,
-=======
-
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       formatter: reactFormatter(<PaymentStatusFormatter />)
     }
   ];
@@ -226,11 +157,7 @@ function Main() {
   ];
 
   const orderStatus = [
-<<<<<<< HEAD
     { value: "approval", label: "Awaiting Approval" },
-=======
-    { value: "approval", label: "Approval" },
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     { value: "approved", label: "Approved" },
     { value: "processing", label: "Processing" },
     { value: "packing", label: "Packing" },
@@ -244,11 +171,7 @@ function Main() {
     param += getOrderId ? `&orderId=${getOrderId}` : "";
     param += getPaymentStatus.value != "" ? `&invoiceStatus=${getPaymentStatus}` : "";
     param += getStatus.value != "" ? `&orderStatus=${getStatus}` : "";
-<<<<<<< HEAD
     param += date[0] != date[1] ? `&dateRange=${getDateRange.replace(/\s+/g, "")}` : "";
-=======
-    param += date[0] != date[1] ? `&date_placed=${getDateRange}` : "";
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     dispatch(onGetSalesOrderList(param));
   };
 
@@ -270,10 +193,7 @@ function Main() {
 
     return (
       <div
-<<<<<<< HEAD
         className="underline decoration-dotted whitespace-nowrap"
-=======
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
         onClick={() => {
           setBasicSlideOverPreview(true);
           setCurrentOrderId({
@@ -293,7 +213,6 @@ function Main() {
     return <div>{description ? description : "N/A"}</div>;
   }
 
-<<<<<<< HEAD
   function handleReOrder(id) {
     setBasicSlideOverPreview(false);
     setReorder({ id: id, event: true });
@@ -312,10 +231,6 @@ function Main() {
     // scrollToRowPosition: "top",
     responsiveLayout: "collapse",
     scrollToRowIfVisible: true
-=======
-  const optionTab = {
-    progressiveLoad: "scroll"
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   };
 
   return (
@@ -333,11 +248,7 @@ function Main() {
                   id="tabulator-html-filter-value"
                   type="text"
                   className="form-control sm:w-40 2xl:w-full mt-2 sm:mt-0"
-<<<<<<< HEAD
                   placeholder="Search By Order Id"
-=======
-                  placeholder="Search by Order Id"
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                   value={getOrderId}
                   onChange={(e) => {
                     setOrderId(e.target.value);
@@ -537,7 +448,6 @@ function Main() {
           <h1 className="font-medium text-base mr-auto">Order Details</h1>
         </ModalHeader>
         <ModalBody>
-<<<<<<< HEAD
           <div className="flex items-center mt-2">
             <h2 className="intro-y text-lg font-medium mr-auto">Shipping Status</h2>
             <div className=" border-gray-200 dark:border-dark-5 pb-5 -mx-5 flex flex-col justify-end flex items-end">
@@ -552,10 +462,6 @@ function Main() {
                 </button>
               </div>
             </div>
-=======
-          <div className="flex items-center mt-8">
-            <h2 className="intro-y text-lg font-medium mr-auto">Shipping Status</h2>
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
           </div>
           {/* BEGIN: Wizard Layout */}
           <div className="intro-y box py-10">
@@ -808,7 +714,6 @@ function Main() {
                       </tr>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
                       {orderDetails
                         ? orderDetails.hasOwnProperty("products") &&
                           orderDetails.products.length > 0
@@ -853,42 +758,6 @@ function Main() {
                               );
                             })
                           : null
-=======
-                      {orderDetails.hasOwnProperty("products")
-                        ? $_.take(orderDetails.products, orderDetails.products.length).map(
-                            (value, key) => (
-                              <tr key={key}>
-                                <td className="!py-4">
-                                  <div className="flex items-center">
-                                    <div className="w-10 h-10 image-fit zoom-in">
-                                      <Tippy
-                                        tag="img"
-                                        className="rounded-lg border-2 border-white shadow-md tooltip"
-                                        src={value.prodRefId.productImage[0].url}
-                                        onError={({ currentTarget }) => {
-                                          currentTarget.onerror = null; // prevents looping
-                                          currentTarget.src =
-                                            "https://fiberopticassy.com/wp-content/uploads/sites/13/2021/09/white-image-copia.png";
-                                        }}
-                                      />
-                                    </div>
-                                    <a href="" className="font-medium whitespace-nowrap ml-4">
-                                      {value.prodRefId.name}
-                                    </a>
-                                  </div>
-                                </td>
-                                <td className="text-right">
-                                  {$h.formatCurrency(value.unit_price)}
-                                </td>
-                                <td className="text-right">{value.quantity}</td>
-                                <td className="text-right">{value.quantity}</td>
-                                <td className="text-right">
-                                  {$h.formatCurrency(value.unit_price * value.quantity)}
-                                </td>
-                              </tr>
-                            )
-                          )
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                         : null}
                     </tbody>
                   </table>
@@ -904,25 +773,12 @@ function Main() {
                 </div>
                 <div className="flex items-center">
                   <Lucide icon="Clipboard" className="w-4 h-4 text-slate-500 mr-2" />
-<<<<<<< HEAD
                   Order Id: {orderDetails.orderId}
-=======
-                  Order Id:
-                  <a href="" className="underline decoration-dotted ml-1">
-                    {orderDetails.orderId}
-                  </a>
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                 </div>
                 <div className="flex items-center mt-3">
                   <Lucide icon="Clipboard" className="w-4 h-4 text-slate-500 mr-2" />
                   Invoice Id:
-<<<<<<< HEAD
                   {orderDetails.invoiceNumber ? orderDetails.invoiceNumber : "N/A"}
-=======
-                  {orderDetails.hasOwnProperty("paymentRefId")
-                    ? orderDetails.paymentRefId.paymentId
-                    : " Null"}
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                 </div>
                 <div className="flex items-center mt-3">
                   <Lucide icon="Calendar" className="w-4 h-4 text-slate-500 mr-2" />
@@ -993,7 +849,6 @@ function Main() {
                     {$h.formatCurrency(orderDetails.totalAmount ? orderDetails.totalAmount : 0)}
                   </div>
                 </div>
-<<<<<<< HEAD
                 <div className="flex items-center mt-3">
                   <Lucide icon="CreditCard" className="w-4 h-4 text-slate-500 mr-2" />
                   VAT
@@ -1001,17 +856,11 @@ function Main() {
                     {$h.formatCurrency(orderDetails.vat ? orderDetails.vat : 0)}
                   </div>
                 </div>
-=======
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                 <div className="flex items-center border-t border-slate-200/60 dark:border-darkmode-400 pt-5 mt-5 font-medium">
                   <Lucide icon="CreditCard" className="w-4 h-4 text-slate-500 mr-2" />
                   Grand Total:
                   <div className="ml-auto">
-<<<<<<< HEAD
                     {$h.formatCurrency(orderDetails.grossTotal ? orderDetails.grossTotal : 0)}
-=======
-                    {$h.formatCurrency(orderDetails.totalAmount ? orderDetails.totalAmount : 0)}
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                   </div>
                 </div>
               </div>

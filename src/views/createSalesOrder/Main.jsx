@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import * as Yup from "yup";
 
 import {
@@ -19,66 +18,26 @@ import Select from "react-select";
 import classnames from "classnames";
 import jwt from "jwt-decode"; // import dependency
 import { useFormik } from "formik";
-=======
-import { Lucide } from "@/base-components";
-import { useState, useEffect } from "react";
-
-import Select from "react-select";
-
-import { useSelector, useDispatch } from "react-redux";
-
-import { useFormik } from "formik";
-
-import classnames from "classnames";
-
-import * as Yup from "yup";
-
-import { helper as $h } from "@/utils";
-
-import jwt from "jwt-decode"; // import dependency
-
-import {
-  getProductList as onGetProductList,
-  addNewOrderManagement as onAddNewOrderManagement,
-  QuantityChange as onQuantityChange,
-  clearCart,
-  getOrderManagement as onGetOrderManagement,
-} from "../../store/actions";
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
 function Main() {
   const dispatch = useDispatch();
 
   const { productList } = useSelector((state) => ({
-<<<<<<< HEAD
     productList: state.ProductListReducer?.productList
   }));
 
   const { orderDetails } = useSelector((state) => ({
     orderDetails: state.OrderManagementReducer?.orderDetailsState
-=======
-    productList: state.ProductListReducer?.productList,
-  }));
-
-  const { orderManagement } = useSelector((state) => ({
-    orderManagement: state.OrderManagementReducer?.orderManagements,
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   }));
 
   const [getProductList, setProductList] = useState([{}]);
 
   const { QuantityofEachProduct } = useSelector((state) => ({
-<<<<<<< HEAD
     QuantityofEachProduct: state.ProductListReducer?.QuantityofEachProduct
   }));
 
   const { shippingInfoList } = useSelector((state) => state.ManageUsersReducer);
 
-=======
-    QuantityofEachProduct: state.ProductListReducer?.QuantityofEachProduct,
-  }));
-
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   const [submit, setSubmit] = useState(false);
 
   const [submission, setsubmission] = useState(false);
@@ -96,7 +55,6 @@ function Main() {
 
     if (!productList.hasOwnProperty("docs")) {
       dispatch(onGetProductList(params));
-<<<<<<< HEAD
     }
     const token = JSON.parse(localStorage.getItem("authUser"));
 
@@ -110,28 +68,17 @@ function Main() {
 
   useEffect(() => {
     if (productList.hasOwnProperty("docs")) {
-=======
-    } else {
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       SetProductsinOptions();
     }
   }, [productList]);
 
   useEffect(() => {
-<<<<<<< HEAD
-=======
-    PopulateAddreses();
-  }, []);
-
-  useEffect(() => {
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     if (submit && !validation.errors.products && !validation.errors.shippingAddress) {
       setSubmit(false);
 
       dispatch(onAddNewOrderManagement(validation.values));
       validation.setValues(validation.initialValues);
 
-<<<<<<< HEAD
       if (AddressObj && AddressObj.length > 0) {
         validation.setFieldValue(
           "shippingAddress.name",
@@ -146,11 +93,6 @@ function Main() {
           AddressObj[0].address ? AddressObj[0].address : ""
         );
       }
-=======
-      validation.setFieldValue("shippingAddress.name", AddressObj[0].name);
-      validation.setFieldValue("shippingAddress.phone", AddressObj[0].phoneNumber);
-      validation.setFieldValue("shippingAddress.address", AddressObj[0].address);
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       dispatch(clearCart());
       handleClickReset();
       setsubmission(false);
@@ -161,7 +103,6 @@ function Main() {
     }
   }, [submit, submission, Address]);
 
-<<<<<<< HEAD
   useEffect(() => {
     if (shippingInfoList.length > 0) {
       PopulateAddreses();
@@ -171,10 +112,6 @@ function Main() {
   const SetProductsinOptions = () => {
     let Products = [];
 
-=======
-  const SetProductsinOptions = () => {
-    let Products = [];
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     productList.docs.map((rec) => Products.push({ value: `${rec._id}`, label: `${rec.name}` }));
 
     PopulateProducts();
@@ -195,35 +132,21 @@ function Main() {
       shippingAddress: {
         name: "",
         phone: "",
-<<<<<<< HEAD
         address: ""
-=======
-        address: "",
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       },
       products: [
         {
           prodRefId: "",
           unit_price: "",
           quantity: "",
-<<<<<<< HEAD
           total_price: ""
         }
-=======
-          total_price: "",
-        },
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       ],
       buyerDetails: {
         name: "",
         phone: "",
-<<<<<<< HEAD
         address: ""
       }
-=======
-        address: "",
-      },
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     },
 
     validationSchema: Yup.object().shape({
@@ -233,17 +156,10 @@ function Main() {
             prodRefId: Yup.string().required("Select product"),
             unit_price: Yup.string().required("Enter unit price"),
             quantity: Yup.string().required("Enter quantity"),
-<<<<<<< HEAD
             total_price: Yup.string().required("Enter total amount")
           })
         )
         .required("Enter product details")
-=======
-            total_price: Yup.string().required("Enter total amount"),
-          })
-        )
-        .required("Enter product details"),
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       // shippingAddress: Yup.object().shape({
       //   name: Yup.string().required(),
       //   // phone: Yup.string().required(),
@@ -251,7 +167,6 @@ function Main() {
       // }),
     }),
 
-<<<<<<< HEAD
     onSubmit: (values) => {}
   });
 
@@ -350,29 +265,6 @@ function Main() {
     //   validation.setFieldValue("buyerDetails.phone", user.phoneNumber);
     //   validation.setFieldValue("buyerDetails.address", user.mainAddress);
     // } catch (err) {}
-=======
-    onSubmit: (values) => {},
-  });
-
-  const PopulateAddreses = () => {
-    try {
-      // Get the token from localStorage
-      const token = JSON.parse(localStorage.getItem("authUser"));
-
-      const user = jwt(token.accessToken);
-
-      setAddressObj(user.shippingInfo);
-      validation.setFieldValue("buyerDetails.name", user.name);
-      validation.setFieldValue("buyerDetails.phone", user.phoneNumber);
-      validation.setFieldValue("buyerDetails.address", user.mainAddress);
-
-      validation.setFieldValue("shippingAddress.name", user.shippingInfo[0].name);
-      validation.setFieldValue("shippingAddress.phone", user.shippingInfo[0].phoneNumber);
-      validation.setFieldValue("shippingAddress.address", user.shippingInfo[0].address);
-
-      setAddress(0);
-    } catch (err) {}
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   };
 
   const PopulateProducts = () => {
@@ -383,11 +275,7 @@ function Main() {
         prodRefId: rec._id,
         unit_price: rec.price,
         quantity: rec.addToCart,
-<<<<<<< HEAD
         total_price: rec.price * rec.addToCart
-=======
-        total_price: rec.price * rec.addToCart,
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       };
 
       products.push(productLIne);
@@ -405,11 +293,7 @@ function Main() {
       prodRefId: "",
       unit_price: "",
       quantity: "",
-<<<<<<< HEAD
       total_price: "0"
-=======
-      total_price: "0",
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     };
     let products = validation.values.products;
     products.push(productLIne);
@@ -425,13 +309,8 @@ function Main() {
         prodRefId: "",
         unit_price: "",
         quantity: "",
-<<<<<<< HEAD
         total_price: ""
       }
-=======
-        total_price: "",
-      },
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     ]);
   };
 
@@ -460,17 +339,10 @@ function Main() {
   };
 
   const getName = (rec) => {
-<<<<<<< HEAD
     if (rec.prodRefId && productList.hasOwnProperty("docs")) {
       let s = productList.docs.find((val) => val._id == rec.prodRefId);
 
       return productList.hasOwnProperty("docs") ? s?.name : "";
-=======
-    if (rec.prodRefId) {
-      let s = productList.docs.find((val) => val._id == rec.prodRefId);
-
-      return productList.hasOwnProperty("docs") ? s.name : "";
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     } else {
       return "";
     }
@@ -525,27 +397,6 @@ function Main() {
                   <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Order Header
                 </div>
                 <div className="mt-5">
-<<<<<<< HEAD
-=======
-                  {/* <div className="flex items-center text-slate-500">
-                    <span>
-                      <Lucide icon="Lightbulb" className="w-5 h-5 text-warning" />
-                    </span>
-                    <div className="ml-2">
-                      <span className="mr-1">
-                        Avoid selling counterfeit products / violating Intellectual Property Rights,
-                        so that your products are not deleted.
-                      </span>
-                      <a
-                        href="https://themeforest.net/item/midone-jquery-tailwindcss-html-admin-template/26366820"
-                        className="text-primary font-medium"
-                        target="blank"
-                      >
-                        Learn More
-                      </a>
-                    </div>
-                  </div> */}
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                   <div className="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                     <div className="form-label xl:w-64 xl:!mr-10">
                       <div className="text-left">
@@ -555,12 +406,6 @@ function Main() {
                         <div className="leading-relaxed text-slate-500 text-xs mt-3">
                           Refund product & postage for the seller and buyer in case of damage / loss
                           during shipping.
-<<<<<<< HEAD
-=======
-                          <a className="text-primary font-medium" href="">
-                            Learn More
-                          </a>
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                         </div>
                       </div>
                     </div>
@@ -579,17 +424,10 @@ function Main() {
                           <div className="form-check-label">
                             <div>Required</div>
                             <div className="leading-relaxed text-slate-500 text-xs mt-1 w-56">
-<<<<<<< HEAD
                               You{" "}
                               <span className="font-medium text-slate-600 dark:text-slate-300">
                                 require
                               </span>{" "}
-=======
-                              You
-                              <span className="font-medium text-slate-600 dark:text-slate-300">
-                                require
-                              </span>
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                               the buyer to activate shipping insurance
                             </div>
                           </div>
@@ -607,17 +445,10 @@ function Main() {
                           <div className="form-check-label">
                             <div>Optional</div>
                             <div className="leading-relaxed text-slate-500 text-xs mt-1 w-56">
-<<<<<<< HEAD
                               You{" "}
                               <span className="font-medium text-slate-600 dark:text-slate-300">
                                 give the buyer the option
                               </span>{" "}
-=======
-                              You
-                              <span className="font-medium text-slate-600 dark:text-slate-300">
-                                give the buyer the option
-                              </span>
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                               to activate shipping insurance
                             </div>
                           </div>
@@ -668,15 +499,8 @@ function Main() {
                         </div>
                       </div>
                       <div className="leading-relaxed text-slate-500 text-xs mt-3">
-<<<<<<< HEAD
                         The delivery service for this product will be the same as in the Shipping
                         Settings.
-=======
-                        The delivery service for this product will be the same as in the
-                        <a className="text-primary font-medium" href="">
-                          Shipping Settings.
-                        </a>
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                       </div>
                     </div>
                   </div>
@@ -702,12 +526,7 @@ function Main() {
                           className="form-check-input"
                           type="checkbox"
                           name="partialShipment"
-<<<<<<< HEAD
                           checked={validation.values.partialShipment}
-=======
-                          defaultChecked={validation.values?.partialShipment}
-                          value={!validation.values?.partialShipment}
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                           onChange={validation.handleChange}
                         />
                         <label className="form-check-label" htmlFor="product-status-active">
@@ -757,13 +576,6 @@ function Main() {
                       </div>
                     </div>
 
-<<<<<<< HEAD
-=======
-                    {/* <div className="w-full xl:w-auto flex items-center mt-3 xl:mt-0">
-                      Please select an address
-                    </div> */}
-
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                     {submission && validation.errors.hasOwnProperty("shippingAddress") ? (
                       <span className="text-red-400">Please select an address</span>
                     ) : null}
@@ -774,34 +586,17 @@ function Main() {
                             name="selectedAddress"
                             key={index}
                             className="col-span-12 lg:col-span-6 2xl:col-span-3"
-<<<<<<< HEAD
                             onClick={() => {
                               validation.setFieldValue("shippingAddress.name", rec.name);
                               validation.setFieldValue("shippingAddress.phone", rec.phoneNumber);
                               validation.setFieldValue("shippingAddress.address", rec.address);
                               setAddress(index);
                             }}
-=======
-                            onClick={
-                              () => {
-                                validation.setFieldValue("shippingAddress.name", rec.name);
-                                validation.setFieldValue("shippingAddress.phone", rec.phoneNumber);
-                                validation.setFieldValue("shippingAddress.address", rec.address);
-                                //  validation.
-                                setAddress(index);
-                              }
-                              // validation.setFieldValue("selectedAddress", index + 1)
-                            }
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                           >
                             <div
                               className={classnames("box p-5 rounded-md mt-5", {
                                 "bg-[#1E40AF]": Address === index,
-<<<<<<< HEAD
                                 "text-[#f8fafc]": Address === index
-=======
-                                "text-[#f8fafc]": Address === index,
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                               })}
                             >
                               <div className="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5 mb-5">
@@ -813,11 +608,7 @@ function Main() {
                                 <Lucide
                                   icon="Clipboard"
                                   className={classnames("w-4 h-4 text-slate-500 mr-2", {
-<<<<<<< HEAD
                                     "text-[#fff]": Address === index
-=======
-                                    "text-[#fff]": Address === index,
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                                   })}
                                 />
                                 Name : {rec.name}
@@ -826,11 +617,7 @@ function Main() {
                                 <Lucide
                                   icon="Calendar"
                                   className={classnames("w-4 h-4 text-slate-500 mr-2", {
-<<<<<<< HEAD
                                     "text-[#fff]": Address === index
-=======
-                                    "text-[#fff]": Address === index,
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                                   })}
                                 />
                                 Phone Number : {rec.phoneNumber}
@@ -840,11 +627,7 @@ function Main() {
                                 <Lucide
                                   icon="MapPin"
                                   className={classnames("w-4 h-4 text-slate-500 mr-2", {
-<<<<<<< HEAD
                                     "text-[#fff]": Address === index
-=======
-                                    "text-[#fff]": Address === index,
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                                   })}
                                 />
                                 Address : {rec.address}
@@ -906,11 +689,7 @@ function Main() {
                                       name={`products.${index}.prodRefId`}
                                       value={{
                                         value: `${rec.prodRefId}`,
-<<<<<<< HEAD
                                         label: `${getName(rec)}`
-=======
-                                        label: `${getName(rec)}`,
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                                       }}
                                       className="login__input form-control py-2 px-4 block w-45"
                                       type="number"
@@ -941,12 +720,7 @@ function Main() {
                                       onKeyDown={(e) =>
                                         exceptThisSymbols.includes(e.key) && e.preventDefault()
                                       }
-<<<<<<< HEAD
                                       className=" form-control min-w-[6rem] my-2"
-=======
-                                      className=" form-control
-                                    min-w-[6rem] my-2"
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                                       onChange={validation.handleChange}
                                     />
                                     {submission &&
@@ -1147,10 +921,6 @@ function Main() {
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-=======
-        {/* //   <AddressModal show={false} getAddress={getAddress} /> */}
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       </form>
     </>
   );

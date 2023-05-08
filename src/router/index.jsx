@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import AdminPanel from "../views/adminPanel/Main";
 import Dashboard from "../views/dashboard/Main";
 import ErrorPage from "../views/errorPage/Main";
@@ -74,39 +73,6 @@ const publicRoutes = [
   { path: "/register", component: Register },
   { path: "/error-page", component: ErrorPage },
   { path: "*", component: ErrorPage }
-=======
-import React from "react";
-
-// import { Redirect } from "react-router-dom"
-import Dashboard from "../views/dashboard/Main";
-import OrderManagement from "../views/orderManagement/Main";
-import TransactionHistory from "../views/transactionHistory/Main";
-import ProductList from "../views/productList/Main";
-import SalesOrderList from "../views/salesOrderList/Main";
-import Help from "../views/help/Main";
-import Login from "../views/login/Main";
-import Register from "../views/register/Main";
-import Logout from "../components/Logout";
-import createSalesOrder from "../views/createSalesOrder/Main";
-
-const authProtectedRoutes = [
-  { path: "/", component: Dashboard },
-  { path: "/dashboard", component: Dashboard },
-  { path: "/order-management", component: OrderManagement },
-  { path: "/transaction-history", component: TransactionHistory },
-  { path: "/product-list", component: ProductList },
-  { path: "/sales-order-list", component: SalesOrderList },
-  { path: "/create-sales-order", component: createSalesOrder },
-
-  { path: "/help", component: Help },
-];
-const publicRoutes = [
-  //   { path: "/logout", component: Logout },
-  { path: "/", component: Login },
-  { path: "/login", component: Login },
-  { path: "/register", component: Register },
-  { path: "/logout", component: Logout },
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 ];
 
 export { authProtectedRoutes, publicRoutes };

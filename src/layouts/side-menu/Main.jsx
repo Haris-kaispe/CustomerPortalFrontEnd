@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { enter, leave, linkTo, nestedMenu } from "./index";
 import { useEffect, useState } from "react";
@@ -20,30 +19,11 @@ import { sideMenuforAdmin as useSideMenuStoreforAdmin } from "@/stores/side-menu
 import { sideMenuforUser as useSideMenuStoreforUser } from "@/stores/side-menu-user";
 
 // import { sideMenu as useSideMenuStore } from "@/stores/side-menu";
-=======
-import { Transition } from "react-transition-group";
-import { useState, useEffect } from "react";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { helper as $h } from "@/utils";
-import { sideMenu as useSideMenuStore } from "@/stores/side-menu";
-import { useRecoilValue } from "recoil";
-import { linkTo, nestedMenu, enter, leave } from "./index";
-import { Lucide } from "@/base-components";
-import logoUrl from "@/assets/images/k.png";
-import classnames from "classnames";
-import TopBar from "@/components/top-bar/Main";
-import MobileMenu from "@/components/mobile-menu/Main";
-import DarkModeSwitcher from "@/components/dark-mode-switcher/Main";
-import Chat from "@/components/chat-section/Main";
-import MainColorSwitcher from "@/components/main-color-switcher/Main";
-import SideMenuTooltip from "@/components/side-menu-tooltip/Main";
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
 function Main() {
   const navigate = useNavigate();
   const location = useLocation();
   const [formattedMenu, setFormattedMenu] = useState([]);
-<<<<<<< HEAD
 
   const sideMenuStoreUser = useRecoilValue(useSideMenuStoreforUser);
   const sideMenuStoreAdmin = useRecoilValue(useSideMenuStoreforAdmin);
@@ -73,15 +53,6 @@ function Main() {
     }
     return "";
   };
-=======
-  const sideMenuStore = useRecoilValue(useSideMenuStore);
-  const sideMenu = () => nestedMenu($h.toRaw(sideMenuStore.menu), location);
-
-  useEffect(() => {
-    dom("body").removeClass("error-page").removeClass("login").addClass("main");
-    setFormattedMenu(sideMenu());
-  }, [sideMenuStore, location.pathname]);
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
   return (
     <div className="py-2">
@@ -92,22 +63,11 @@ function Main() {
       <div className="flex mt-[4.7rem] md:mt-0">
         {/* BEGIN: Side Menu */}
         <nav className="side-nav">
-<<<<<<< HEAD
           <div className="intro-x flex items-center pl-5 pt-4">
             <img alt="Customer Portal - KAISPE" className="w-6" src={logoUrl} />
             <span className="hidden xl:block text-white text-lg ml-3">KAISPE</span>
           </div>
           <div className="my-12"></div>
-=======
-          <Link
-            to="/side-menu/dashboard-overview-1"
-            className="intro-x flex items-center pl-5 pt-4"
-          >
-            <img alt="Customer Portal - KAISPE" className="w-6" src={logoUrl} />
-            <span className="hidden xl:block text-white text-lg ml-3">KAISPE</span>
-          </Link>
-          <div className=" my-12"></div>
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
           <ul>
             {/* BEGIN: First Child */}
             {formattedMenu.map((menu, menuKey) =>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Navigate, Route } from "react-router-dom";
 import PropTypes, { element } from "prop-types";
 
@@ -18,19 +17,11 @@ const getRole = () => {
 };
 
 const Authmiddleware = ({ component: Component, isAuthProtected, path, role }) => {
-=======
-import React from "react";
-import PropTypes, { element } from "prop-types";
-import { Route, Navigate } from "react-router-dom";
-
-const Authmiddleware = ({ component: Component, isAuthProtected, path }) => {
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   const authUser = localStorage.getItem("authUser");
 
   if (isAuthProtected && !authUser) {
     return <Navigate to="/login" />;
   } else if (!isAuthProtected && authUser) {
-<<<<<<< HEAD
     // if authUser is true and isAuthProtected is false then check for role
     if (getRole() === "admin") {
       if (path === "/" || path === "/login" || path === "/register") {
@@ -69,16 +60,6 @@ const Authmiddleware = ({ component: Component, isAuthProtected, path }) => {
   // }
 
   // return <Component />;
-=======
-    if (path == "/login") {
-      return <Navigate to="/dashboard" />;
-    }
-
-    return <Component />;
-  }
-
-  return <Component />;
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 };
 
 Authmiddleware.propTypes = {
@@ -87,10 +68,7 @@ Authmiddleware.propTypes = {
   location: PropTypes.object,
   layout: PropTypes.any,
   path: PropTypes.string,
-<<<<<<< HEAD
   role: PropTypes.string
-=======
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 };
 
 export default Authmiddleware;

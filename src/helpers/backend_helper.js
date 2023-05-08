@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import * as url from "./url_helper";
 
 import { del, get, patch, post, postformData, postwithnotoken, put } from "./api_helper";
@@ -7,14 +6,6 @@ import { PublicClientApplication } from "@azure/msal-browser";
 import axios from "axios";
 import { config } from "../../Config";
 
-=======
-import axios from "axios";
-import { del, get, post, postformData, postwithnotoken, put } from "./api_helper";
-import * as url from "./url_helper";
-
-import { PublicClientApplication } from "@azure/msal-browser";
-import { config } from "../Config";
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 // Register Method
 const postJwtRegister = (url, data) => {
   return axios
@@ -78,18 +69,11 @@ const getProductList = async (params) => await get(url.GET_PRODUCT_LIST + params
 const addNewProductList = (payload) => post(url.ADD_PRODUCT_LIST, payload);
 
 //update OrderManagement
-<<<<<<< HEAD
 const updateProductList = async (payload) =>
   await patch(url.UPDATE_PRODUCT_LIST + "/" + payload.param, payload.data);
 
 // delete OrderManagement
 const deleteProductList = async (payload) => await del(url.DELETE_PRODUCT_LIST + "/" + payload);
-=======
-const updateProductList = (payload) => put(url.UPDATE_PRODUCT_LIST + "/" + payload.code, payload);
-
-// delete OrderManagement
-const deleteProductList = (payload) => del(url.DELETE_PRODUCT_LIST + "/" + payload.code);
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
 // get SalesOrderList
 const getSalesOrderList = async (params) => await get(url.GET_ORDER_MANAGEMENT + params);
@@ -102,7 +86,6 @@ const updateSalesOrderList = (payload) =>
   put(url.UPDATE_ORDER_MANAGEMENT + "/" + payload.code, payload);
 
 // delete SalesOrderList
-<<<<<<< HEAD
 const deleteSalesOrderList = (payload) => del(url.DELETE_ORDER_MANAGEMENT + "/" + payload);
 
 const addNewContact = (payload) => post(url.ADD_CONTACT, payload);
@@ -111,24 +94,6 @@ const getContactList = async (payload) => await get(url.ADD_CONTACT + payload);
 
 const getContactDetails = async (payload) => await get(url.GET_SPECIFIC_CONTACT + "/" + payload);
 
-=======
-const deleteSalesOrderList = (payload) => del(url.DELETE_ORDER_MANAGEMENT + "/" + payload.code);
-
-// get Help
-const getHelp = async (params) => await get(url.GET_HELP + params);
-
-//add OrderManagement
-const addNewHelp = (payload) => postformData(url.ADD_HELP, payload);
-
-//update OrderManagement
-const updateHelp = (payload) => put(url.UPDATE_HELP + "/" + payload.code, payload);
-
-// delete OrderManagement
-const deleteHelp = (payload) => del(url.DELETE_HELP + "/" + payload.code);
-
-const addNewContact = (payload) => post(url.ADD_CONTACT, payload);
-
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 // Auth Login
 const Login = (payload) => postwithnotoken(url.LOGIN, payload);
 
@@ -157,15 +122,7 @@ const SalesOrderReportHistory = async () => await get(url.SALES_ORDER_REPORT_HIS
 
 const MonthlyOrderReport = async () => await get(url.MONTH_ORDER_REPORT);
 
-<<<<<<< HEAD
 const postAzureLogin = async (payload) => await postwithnotoken(url.AZURE_LOGIN, payload);
-=======
-const postAzureLogin = async (payload) =>
-  await post(url.AZURE_LOGIN, payload, {
-    // base url is not required
-    baseURL: false
-  });
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
 const LogintoAzure = async () => {
   const PCInstance = new PublicClientApplication({
@@ -190,7 +147,6 @@ const LogintoAzure = async () => {
     .catch((error) => error);
 };
 
-<<<<<<< HEAD
 const getUsersCall = async (params) => await get(url.USERS + params);
 
 const updateUserCall = (payload) => patch(url.USERS + "/" + payload.code, payload.data);
@@ -261,33 +217,6 @@ const getShippingInfoList = async (payload) =>
   await get(url.SHIPPING_INFO + "/" + payload.userId + "/shippingInfo/");
 
 // /:userId/shippingInfo/:specificInfoId";
-=======
-//{
-// console.log(response);
-// const authUser = {
-//   accessToken: response.accessToken,
-//   email: response.account.username,
-//   name: response.account.name,
-//   id: response.account.homeAccountId
-// };
-
-// // RESPONSE = response;
-// // const azureLoginResponse = call(postAzureLogin, response);
-// // console.log(azureLoginResponse, "---res");
-
-// localStorage.setItem("authUser", JSON.stringify(authUser));
-// yield put(loginWithAzureSuccess(authUser));
-
-//  history("/dashboard");
-//      }
-
-// )
-
-// return;
-//};
-
-//=========================================
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
 export {
   getOrderManagement,
@@ -306,13 +235,6 @@ export {
   addNewSalesOrderList,
   updateSalesOrderList,
   deleteSalesOrderList,
-<<<<<<< HEAD
-=======
-  getHelp,
-  addNewHelp,
-  updateHelp,
-  deleteHelp,
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   addNewContact,
   Login,
   getAllOrders,
@@ -325,7 +247,6 @@ export {
   SalesOrderReportHistory,
   MonthlyOrderReport,
   postAzureLogin,
-<<<<<<< HEAD
   LogintoAzure,
   getUsersCall,
   updateUserCall,
@@ -346,7 +267,4 @@ export {
   AdddShippingInfo,
   getShippingInfo,
   getShippingInfoList
-=======
-  LogintoAzure
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 };

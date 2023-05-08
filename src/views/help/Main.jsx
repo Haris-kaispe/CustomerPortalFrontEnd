@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import * as $_ from "lodash";
 
 import {
@@ -21,49 +20,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import { useDropzone } from "react-dropzone";
-=======
-import {
-  Lucide,
-  Tippy,
-  TabGroup,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  ClassicEditor
-} from "@/base-components";
-import * as $_ from "lodash";
-import { useState, useEffect } from "react";
-
-import { useSelector, useDispatch } from "react-redux";
-import moment from "moment";
-
-import {
-  addNewContact as onAddNewContact,
-  getHelp as onGetHelp,
-  addNewHelp as onAddNewHelp,
-  updateHelp as onUpdateHelp,
-  deleteHelp as onDeleteHelp
-} from "../../store/actions";
-import { Button } from "reactstrap";
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
 function Main() {
   const dispatch = useDispatch();
 
-<<<<<<< HEAD
   const { loading, urls, contact } = useSelector((state) => state.HelpReducer);
-=======
-  const { help } = useSelector((state) => ({
-    help: state.HelpReducer?.help
-  }));
-
-  const { contact } = useSelector((state) => ({
-    contact: state.HelpReducer?.contact
-  }));
-
-  const [getHelp, setHelp] = useState([]);
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
 
   const [getContact, setContact] = useState({});
 
@@ -73,29 +34,21 @@ function Main() {
 
   const [title, settitle] = useState("");
 
-<<<<<<< HEAD
   const [error, setError] = useState(null);
 
   // 5 MB
   const maxFileSize = 5242880;
 
-=======
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   const handleFileUpload = () => {
     const body = {
       title: title,
       content: content,
       caption: caption,
-<<<<<<< HEAD
       images: urls
-=======
-      images: getHelp
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
     };
 
     dispatch(onAddNewContact(body));
     setContact(contact);
-<<<<<<< HEAD
     // console.setcontent("");
     settitle("");
     setcontent();
@@ -161,76 +114,10 @@ function Main() {
     }
   }, [files]);
 
-=======
-    settitle("");
-    setcontent();
-    setcaption("");
-    SetImages([]);
-  };
-
-  const [categories, setCategories] = useState(["1", "2"]);
-  const [tags, setTags] = useState(["1", "2"]);
-  const [salesReportFilter, setSalesReportFilter] = useState();
-  const [editorData, setEditorData] = useState("<p>Content of the editor.</p>");
-
-  const [GetImages, SetImages] = useState([]);
-  const [disabled, setDisabled] = useState(false);
-
-  // if we are using arrow function binding is not required
-  //  this.onImageChange = this.onImageChange.bind(this);
-
-  const onImageChange = (event) => {
-    if (event.target.files) {
-      if (event.target.files[0]) {
-        let img = event.target.files[0];
-        SetImages((GetImages) => [...GetImages, URL.createObjectURL(img)]);
-      }
-      if (event.target.files[1]) {
-        let img = event.target.files[1];
-        SetImages((GetImages) => [...GetImages, URL.createObjectURL(img)]);
-      }
-      if (event.target.files[2]) {
-        let img = event.target.files[2];
-        SetImages((GetImages) => [...GetImages, URL.createObjectURL(img)]);
-      }
-      if (event.target.files[3]) {
-        let img = event.target.files[3];
-        SetImages((GetImages) => [...GetImages, URL.createObjectURL(img)]);
-      }
-      if (event.target.files[4]) {
-        let img = event.target.files[4];
-        SetImages((GetImages) => [...GetImages, URL.createObjectURL(img)]);
-      }
-    }
-  };
-
-  const handleRemoveImage = (value, key) => {
-    GetImages.splice(key, 1);
-    SetImages(GetImages);
-    if (GetImages.length < 5) {
-      setDisabled(false);
-    }
-  };
-
-  useEffect(() => {
-    if (GetImages.length != 0) {
-      dispatch(onAddNewHelp(GetImages));
-    }
-
-    if (GetImages.length == 5) {
-      setDisabled(true);
-    }
-
-    setHelp(help);
-  }, [GetImages, disabled]);
-
-  useEffect(() => {}, [title, content, caption]);
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
   return (
     <>
       <div className="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 className="text-lg font-medium mr-auto">Contact Us</h2>
-<<<<<<< HEAD
         <div className="w-full sm:w-auto flex mt-4 sm:mt-0">
           {/*<button
             type="button"
@@ -245,22 +132,6 @@ function Main() {
       </div>
       <div className="pos intro-y grid grid-cols-12 gap-5 mt-5">
         <div className="intro-y col-span-12 lg:col-span-8">
-=======
-        <div className="w-full sm:w-auto flex mt-4 sm:mt-0"></div>
-      </div>
-      <div className="pos intro-y grid grid-cols-12 gap-5 mt-5">
-        {/* BEGIN: Post Content */}
-        <div className="intro-y col-span-12 lg:col-span-8">
-          <input
-            type="text"
-            className="intro-y form-control py-3 px-4 box pr-10"
-            placeholder="Title"
-            value={title}
-            onChange={(e) => {
-              settitle(e.target.value);
-            }}
-          />
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
           <TabGroup className="post intro-y overflow-hidden box mt-5">
             <TabList className="post__tabs nav-tabs flex-col sm:flex-row bg-slate-200 dark:bg-darkmode-800">
               <Tab fullWidth={false} className="w-full sm:w-40 py-0 px-0" tag="button">
@@ -280,7 +151,6 @@ function Main() {
                   <div className="font-medium flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                     <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Subject
                   </div>
-<<<<<<< HEAD
 
                   <div className="mt-5">
                     <div>
@@ -305,11 +175,6 @@ function Main() {
                       // onKeyUp={(e) => {
                       //   setcontent(e.target.value);
                       // }}
-=======
-                  <div className="mt-5">
-                    <ClassicEditor
-                      value={content}
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                       onChange={(val) => {
                         setcontent(val);
                       }}
@@ -322,11 +187,7 @@ function Main() {
                   </div>
                   <div className="mt-5">
                     <div>
-<<<<<<< HEAD
                       <label htmlFor="post-form-7" className="form-label mr-2">
-=======
-                      <label htmlFor="post-form-7" className="form-label">
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                         Caption
                       </label>
                       <input
@@ -344,41 +205,24 @@ function Main() {
                       <label className="form-label">Upload Image</label>
                       <div className="border-2 border-dashed dark:border-darkmode-400 rounded-md pt-4 pb-4">
                         <div className="flex flex-wrap px-4">
-<<<<<<< HEAD
                           {$_.take(files, files.length).map((value, key) => (
-=======
-                          {$_.take(GetImages, GetImages.length).map((value, key) => (
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                             <div
                               key={key}
                               className="w-24 h-24 relative image-fit mb-5 mr-5 cursor-pointer zoom-in"
                             >
-<<<<<<< HEAD
                               <img className="rounded-md" alt={value.name} src={value.preview} />
-=======
-                              <img
-                                className="rounded-md"
-                                alt="Customer Portal - KAISPE"
-                                src={value}
-                              />
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                               <Tippy
                                 tag="div"
                                 content="Remove this image?"
                                 className="w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-danger right-0 top-0 -mr-2 -mt-2"
                                 onClick={() => {
-<<<<<<< HEAD
                                   handleRemoveFile(value);
-=======
-                                  handleRemoveImage(value, key);
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                                 }}
                               >
                                 <Lucide icon="X" className="w-4 h-4" />
                               </Tippy>
                             </div>
                           ))}
-<<<<<<< HEAD
 
                           {files.length === 0 || files.length > 4 ? (
                             ""
@@ -417,36 +261,13 @@ function Main() {
                         )}
                         {error && <div className="text-danger text-center">{error}</div>}
                         <span className="text-info mx-7"></span>
-=======
-                        </div>
-                        <div className="px-4 pb-4 flex items-center cursor-pointer relative">
-                          <Lucide icon="Image" className="w-4 h-4 mr-2" />
-                          <span className="text-primary mr-1">Upload a file</span> or drag and drop
-                          <input
-                            type="file"
-                            className="w-full h-full top-0 left-0 absolute opacity-0"
-                            disabled={disabled}
-                            multiple="multiple"
-                            onChange={(event) => {
-                              onImageChange(event);
-                            }}
-                            accept="image/png, image/jpg, image/jpeg"
-                          />
-                        </div>
-                        <span className="text-info mx-7">
-                          Only .png , .jpg ,.jpeg are allowed and Maximum file size is 2 MB{" "}
-                        </span>
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                       </div>
                       <button
                         className="intro-y form-control py-4 px-4 btn btn-primary shadow-md my-4 "
                         onClick={() => {
                           handleFileUpload();
                         }}
-<<<<<<< HEAD
                         disabled={loading}
-=======
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
                       >
                         <Lucide icon="Send" className="w-4 h-4 mr-2" /> Send
                       </button>
@@ -457,10 +278,7 @@ function Main() {
             </TabPanels>
           </TabGroup>
         </div>
-<<<<<<< HEAD
         {/* END: Post Content */}
-=======
->>>>>>> f8a4dd6030653996833187bae2a7f6b6a31dae75
       </div>
     </>
   );
