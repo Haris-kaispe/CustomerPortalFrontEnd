@@ -164,18 +164,25 @@ function Main() {
             <DropdownContent className="bg-primary text-white">
               <DropdownHeader tag="div" className="!font-normal">
                 <div className="font-medium">{$h.getTokenData()?.name || "N/A"}</div>
-                <div className="text-xs text-white/70 mt-0.5 dark:text-slate-500">
+                <div className="text-xs text-white mt-0.5 dark:text-slate-500">
                   {$h.getTokenData()?.email || "N/A"}
                 </div>
               </DropdownHeader>
               <DropdownDivider className="border-white/[0.08]" />
               <DropdownItem
                 className="hover:bg-white/5"
-                link={
-                  $h.getRole() == "customer"
-                    ? `/CustomerProfile?id=${$h.getTokenData().id}`
-                    : `/AdminProfile?id=${$h.getTokenData().id}`
-                }
+                // link={
+                //   $h.getRole() == "customer"
+                //     ? `/CustomerProfile?id=${$h.getTokenData().id}`
+                //     : `/AdminProfile?id=${$h.getTokenData().id}`
+                // }
+                onClick={() => {
+                  navigate(
+                    $h.getRole() == "customer"
+                      ? `/CustomerProfile?id=${$h.getTokenData().id}`
+                      : `/AdminProfile?id=${$h.getTokenData().id}`
+                  );
+                }}
               >
                 <Lucide icon="User" className="w-4 h-4 mr-2" /> Profile
               </DropdownItem>

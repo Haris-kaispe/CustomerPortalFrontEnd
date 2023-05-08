@@ -22,12 +22,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { helper as $h } from "@/utils";
 import { ExportJsonCsv } from "react-export-json-csv";
 import Select from "react-select";
+import alternateImage from "../../assets/images/gallery.png";
 import classnames from "classnames";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import xlsx from "xlsx";
-
-import alternateImage from "../../assets/images/gallery.png";
 
 function Main() {
   const TAG = "SALES_ORDER_LIST";
@@ -194,6 +193,7 @@ function Main() {
 
     return (
       <div
+        className="underline decoration-dotted whitespace-nowrap"
         onClick={() => {
           setBasicSlideOverPreview(true);
           setCurrentOrderId({

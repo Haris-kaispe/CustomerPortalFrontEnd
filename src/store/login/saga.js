@@ -41,7 +41,6 @@ function* loginWithAzure({ payload: history }) {
 
       const backendResponse = yield call(postAzureLogin, response);
 
-
       if (backendResponse?.accessToken && backendResponse?.azure_data) {
         localStorage.setItem("authUser", JSON.stringify(backendResponse));
         history("/admin-panel");
@@ -58,6 +57,7 @@ function* logoutUser({ payload }) {
   try {
     yield localStorage.removeItem("authUser");
     yield payload("/login");
+    // clean saga and redux store
   } catch (error) {
     yield put(apiError(error));
   }

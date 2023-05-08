@@ -170,12 +170,7 @@ function Main() {
     onSubmit: (values) => {}
   });
 
-  const prodRefIdThatSent = [
-    { prodRefId: "642e4dd8cab79300546ddff1", unit_price: 2300, quantity: 7, total_price: 16100 }
-  ];
-
   useEffect(() => {
-    // get params from url create-sales-order?reorder=true&orderId=642e8af8cab79300546ddffd
     const urlParams = new URLSearchParams(window.location.search);
     const isReorder = urlParams.get("reorder");
     const orderId = urlParams.get("orderId");
@@ -199,12 +194,6 @@ function Main() {
             phone: orderDetails.shippingAddress.phone || "",
             address: orderDetails.shippingAddress.address || ""
           },
-          // products: orderDetails.products.map((rec) => {
-          //   return {
-          //     prodRefId: {
-          //                               value: `${rec.prodRefId}`,
-          //                               label: `${getName(rec)}`
-          //                             }
 
           products: orderDetails.products.map((rec) => {
             return {
@@ -214,9 +203,6 @@ function Main() {
               total_price: rec.total_price
             };
           }),
-
-          // ,
-          // products: orderDetails.products,
           buyerDetails: {
             name: orderDetails.buyerDetails.name || "",
             phone: orderDetails.buyerDetails.phone || "",
@@ -239,7 +225,9 @@ function Main() {
   }, [orderDetails]);
 
   const PopulateAddreses = () => {
-    try {
+    console.log("shippingInfoList", shippingInfoList);
+
+    if (shippingInfoList.length > 0) {
       let addresses = [];
       shippingInfoList.map((rec) => {
         addresses.push({
@@ -251,15 +239,32 @@ function Main() {
 
       setAddressObj(addresses);
       setAddress(0);
+      // validation.setFieldValue("shippingAddress.name", addresses[0].name);
+      // validation.setFieldValue("shippingAddress.phone", addresses[0].phoneNumber);
+      // validation.setFieldValue("shippingAddress.address", addresses[0].address);
+    }
 
-      validation.setFieldValue("shippingAddress.name", addresses[0].name);
-      validation.setFieldValue("shippingAddress.phone", addresses[0].phoneNumber);
-      validation.setFieldValue("shippingAddress.address", addresses[0].address);
+    // try {
+    //   let addresses = [];
+    //   shippingInfoList.map((rec) => {
+    //     addresses.push({
+    //       name: rec.name,
+    //       phoneNumber: rec.phoneNumber,
+    //       address: rec.address
+    //     });
+    //   });
 
-      validation.setFieldValue("buyerDetails.name", user.name);
-      validation.setFieldValue("buyerDetails.phone", user.phoneNumber);
-      validation.setFieldValue("buyerDetails.address", user.mainAddress);
-    } catch (err) {}
+    //   setAddressObj(addresses);
+    //   setAddress(0);
+
+    //   validation.setFieldValue("shippingAddress.name", addresses[0].name);
+    //   validation.setFieldValue("shippingAddress.phone", addresses[0].phoneNumber);
+    //   validation.setFieldValue("shippingAddress.address", addresses[0].address);
+
+    //   validation.setFieldValue("buyerDetails.name", user.name);
+    //   validation.setFieldValue("buyerDetails.phone", user.phoneNumber);
+    //   validation.setFieldValue("buyerDetails.address", user.mainAddress);
+    // } catch (err) {}
   };
 
   const PopulateProducts = () => {
@@ -392,24 +397,6 @@ function Main() {
                   <Lucide icon="ChevronDown" className="w-4 h-4 mr-2" /> Order Header
                 </div>
                 <div className="mt-5">
-                  {/* <div className="flex items-center text-slate-500">
-                    <span>
-                      <Lucide icon="Lightbulb" className="w-5 h-5 text-warning" />
-                    </span>
-                    <div className="ml-2">
-                      <span className="mr-1">
-                        Avoid selling counterfeit products / violating Intellectual Property Rights,
-                        so that your products are not deleted.
-                      </span>
-                      <a
-                        href="https://themeforest.net/item/midone-jquery-tailwindcss-html-admin-template/26366820"
-                        className="text-primary font-medium"
-                        target="blank"
-                      >
-                        Learn More
-                      </a>
-                    </div>
-                  </div> */}
                   <div className="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                     <div className="form-label xl:w-64 xl:!mr-10">
                       <div className="text-left">
@@ -589,10 +576,6 @@ function Main() {
                       </div>
                     </div>
 
-                    {/* <div className="w-full xl:w-auto flex items-center mt-3 xl:mt-0">
-                      Please select an address
-                    </div> */}
-
                     {submission && validation.errors.hasOwnProperty("shippingAddress") ? (
                       <span className="text-red-400">Please select an address</span>
                     ) : null}
@@ -603,16 +586,12 @@ function Main() {
                             name="selectedAddress"
                             key={index}
                             className="col-span-12 lg:col-span-6 2xl:col-span-3"
-                            onClick={
-                              () => {
-                                validation.setFieldValue("shippingAddress.name", rec.name);
-                                validation.setFieldValue("shippingAddress.phone", rec.phoneNumber);
-                                validation.setFieldValue("shippingAddress.address", rec.address);
-                                //  validation.
-                                setAddress(index);
-                              }
-                              // validation.setFieldValue("selectedAddress", index + 1)
-                            }
+                            onClick={() => {
+                              validation.setFieldValue("shippingAddress.name", rec.name);
+                              validation.setFieldValue("shippingAddress.phone", rec.phoneNumber);
+                              validation.setFieldValue("shippingAddress.address", rec.address);
+                              setAddress(index);
+                            }}
                           >
                             <div
                               className={classnames("box p-5 rounded-md mt-5", {
@@ -942,7 +921,6 @@ function Main() {
             </div>
           </div>
         </div>
-        {/* //   <AddressModal show={false} getAddress={getAddress} /> */}
       </form>
     </>
   );

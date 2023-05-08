@@ -32,9 +32,9 @@ function Main(props) {
         {
           //currSales
           label: "# of Votes",
-          data:
-            // if it exists or else 0
-            props.data.map((item) => item.currSales || 0),
+          data: props.data.map((item) => item.currSales || 0),
+          // if it exists or else 0
+          // props.data.map((item) => item.currSales || 0),
 
           borderWidth: 2,
           borderColor: colorScheme ? colors.primary(0.8) : "",
@@ -93,7 +93,8 @@ function Main(props) {
           grid: {
             color: darkMode ? colors.slate["500"](0.3) : colors.slate["300"](),
             borderDash: [2, 2],
-            drawBorder: false
+            drawBorder: false,
+            borderWidth: 5
           }
         }
       }

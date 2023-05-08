@@ -11,17 +11,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
-
 import { ExportJsonCsv } from "react-export-json-csv";
 import Select from "react-select";
 import { StripePayButton } from "../../components/payment-buttons/Main";
+import alternateImage from "../../assets/images/gallery.png";
 import classnames from "classnames";
 import jsPDF from "jspdf";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
-
-import alternateImage from "../../assets/images/gallery.png";
 
 function Main() {
   const componentRef = useRef();
@@ -849,24 +847,22 @@ function Main() {
                 </div>
                 <div className="flex items-center mt-3">
                   <Lucide icon="Clipboard" className="w-4 h-4 text-slate-500 mr-2" />
-                  Invoice Id:
-                  {orderDetails.invoiceNumber ? orderDetails.invoiceNumber : " Null"}
+                  Invoice Id: {orderDetails.invoiceNumber ? orderDetails.invoiceNumber : "N/A"}
                 </div>
                 <div className="flex items-center mt-3">
                   <Lucide icon="Calendar" className="w-4 h-4 text-slate-500 mr-2" />
-                  Purchase Date:
-                  {moment(orderDetails.orderPlaced).utc().format("DD-MMM-YYYY")}
+                  Purchase Date: {moment(orderDetails.orderPlaced).utc().format("DD-MMM-YYYY")}
                 </div>
                 <div className="flex items-center mt-3">
                   <Lucide icon="Clock" className="w-4 h-4 text-slate-500 mr-2" />
                   Transaction Status:
                   {orderDetails.invoiceStatus == "unpaid" ? (
                     <span className="bg-danger/20 text-danger rounded px-2 ml-1">
-                      {orderDetails.invoiceStatus}
+                      {$h.capitalizeFirstLetter(orderDetails.invoiceStatus)}
                     </span>
                   ) : (
                     <span className="bg-success/20 text-success rounded px-2 ml-1">
-                      {orderDetails.invoiceStatus}
+                      {$h.capitalizeFirstLetter(orderDetails.invoiceStatus)}
                     </span>
                   )}
                 </div>
@@ -911,7 +907,7 @@ function Main() {
                   <div className="ml-auto">
                     {orderDetails.hasOwnProperty("paymentRefId")
                       ? orderDetails.paymentRefId.method
-                      : "Null"}
+                      : "N/A"}
                   </div>
                 </div>
                 <div className="flex items-center mt-3">
@@ -1025,7 +1021,7 @@ function Main() {
                 <div className="mt-10 lg:mt-0 lg:ml-auto lg:text-right">
                   <div className="text-base text-slate-500">Receipt</div>
                   <div className="text-lg text-primary font-medium mt-2">
-                    {orderDetails.invoiceNumber ? orderDetails.invoiceNumber : " Null"}
+                    {orderDetails.invoiceNumber ? orderDetails.invoiceNumber : "N/A"}
                   </div>
                   <div className="mt-1">
                     {moment(orderDetails.orderPlaced).utc().format("DD-MMM-YYYY")}
@@ -1094,13 +1090,13 @@ function Main() {
                   <div className="mt-1">Code : {import.meta.env.VITE_BANK_ACCOUNT_CODE}</div>
                 </div>
                 <div className="text-center sm:text-right sm:ml-auto">
-                  <div className="text-base text-slate-500">Total Amount</div>
-                  <div className="text-xl text-primary font-medium mt-2">
-                    {$h.formatCurrency($h.FindTotal(orderDetails) + $h.CalculateVat(orderDetails))}
-                  </div>
                   <div className="mt-1">VAT included</div>
                   <div className="text-xl text-primary font-small mt-1">
                     {$h.formatCurrency($h.CalculateVat(orderDetails))}
+                  </div>
+                  <div className="text-base text-slate-500">Total Amount</div>
+                  <div className="text-xl text-primary font-medium mt-2">
+                    {$h.formatCurrency($h.FindTotal(orderDetails) + $h.CalculateVat(orderDetails))}
                   </div>
                 </div>
               </div>

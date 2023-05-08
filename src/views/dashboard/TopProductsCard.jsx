@@ -5,6 +5,19 @@ import classnames from "classnames";
 import { memo } from "react";
 
 const TopProductsCard = ({ TopProducts, Loading }) => {
+  const CalculatePercentage = (data) => {
+    if (!data.length) return data;
+
+    let total = 0;
+    data.forEach((element) => {
+      total += element.count;
+    });
+    data.forEach((element) => {
+      element.percentage = ((element.count / total) * 100).toFixed(1);
+    });
+    return data;
+  };
+
   return (
     <div className="intro-y box p-5 mt-5">
       {TopProducts.length ? (
@@ -13,7 +26,7 @@ const TopProductsCard = ({ TopProducts, Loading }) => {
             <ReportPieChart height={213} data={TopProducts} />
           </div>
           <div className="w-56 sm:w-auto mx-auto mt-4 grid grid-cols-2  ">
-            {TopProducts.map((value, index) => {
+            {CalculatePercentage(TopProducts).map((value, index) => {
               return (
                 <div
                   key={index}
@@ -25,15 +38,15 @@ const TopProductsCard = ({ TopProducts, Loading }) => {
                     className={classnames({
                       "w-2 h-2 rounded-full mr-3": true,
                       "bg-primary": index == 0,
-                      "bg-pending": index == 1,
-                      "bg-warning": index == 2,
+                      "bg-pending": index == 2,
+                      "bg-warning": index == 1,
                       "bg-secondary": index == 3,
                       "bg-success": index == 4,
                       "bg-info": index == 5
                     })}
                   ></div>
                   <span className="truncate">{$h.capitalizeFirstLetter(value.productName)}</span>
-                  <span className="font-medium ml-auto">{value.productPercentage}%</span>
+                  <span className="font-medium ml-auto">{value.percentage}%</span>
                 </div>
               );
             })}
@@ -42,7 +55,7 @@ const TopProductsCard = ({ TopProducts, Loading }) => {
       ) : Loading ? (
         <ReactLoading type="bubbles" color="#1E40AF" />
       ) : (
-        <div className="text-3xl font-medium leading-8 mt-6 mb-6">-</div>
+        <div className="w-auto my-10 text-center font-medium text-lg">No Data Found</div>
       )}
     </div>
   );

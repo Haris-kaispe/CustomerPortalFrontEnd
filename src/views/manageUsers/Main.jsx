@@ -112,6 +112,7 @@ function Main() {
       setFieldValue("name", basicSlideOverPreview.data.name);
       setFieldValue("email", basicSlideOverPreview.data.email);
       setFieldValue("phoneNumber", basicSlideOverPreview.data.phoneNumber);
+      setFieldValue("mainAddress", basicSlideOverPreview.data.mainAddress);
 
       // use only 8 characters of password
       setFieldValue("password", basicSlideOverPreview.data.password);
@@ -120,6 +121,7 @@ function Main() {
       setFieldValue("email", "");
       setFieldValue("phoneNumber", "");
       setFieldValue("password", "");
+      setFieldValue("mainAddress", "");
     }
   }, [basicSlideOverPreview]);
 
@@ -142,7 +144,8 @@ function Main() {
     name: "",
     email: "",
     phoneNumber: "",
-    password: ""
+    password: "",
+    mainAddress: ""
   };
 
   const validationSchema = Yup.object().shape({
@@ -159,7 +162,8 @@ function Main() {
       // )
       // .min(6, "Password must be at least 8 characters")
       // .max(20, "Password must be at most 20 characters")
-      .required("Password is required")
+      .required("Password is required"),
+    mainAddress: Yup.string().required("Address is required")
   });
 
   const { values, errors, handleSubmit, handleChange, handleBlur, setFieldValue } = useFormik({
@@ -497,6 +501,25 @@ function Main() {
                   />
                   {submit && errors.phoneNumber && (
                     <span className="text-danger">{errors.phoneNumber}</span>
+                  )}
+                </div>
+
+                <div className="mt-3">
+                  <label htmlFor="vertical-form-2" className="form-label">
+                    Address*
+                  </label>
+                  <input
+                    id="vertical-form-2"
+                    type="text"
+                    className="form-control"
+                    placeholder="Address"
+                    name="mainAddress"
+                    value={values.mainAddress}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {submit && errors.mainAddress && (
+                    <span className="text-danger">{errors.mainAddress}</span>
                   )}
                 </div>
 

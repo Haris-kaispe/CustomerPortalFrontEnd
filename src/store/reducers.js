@@ -23,4 +23,14 @@ const rootReducer = combineReducers({
   VendorReducer
 });
 
-export default rootReducer;
+// on logout all reducers will be reset
+const appReducer = (state, action) => {
+  if (action.type === "LOGOUT_USER") {
+    state = undefined;
+  }
+  return rootReducer(state, action);
+};
+
+export default appReducer;
+
+// export default rootReducer;

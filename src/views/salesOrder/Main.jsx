@@ -32,11 +32,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { helper as $h } from "@/utils";
 import { ExportJsonCsv } from "react-export-json-csv";
 import Select from "react-select";
+import alternateImage from "../../assets/images/gallery.png";
 import classnames from "classnames";
 import moment from "moment";
 import xlsx from "xlsx";
-
-import alternateImage from "../../assets/images/gallery.png";
 
 function Main() {
   const TAG = "SALES_ORDER_LIST";
@@ -89,7 +88,7 @@ function Main() {
 
   useEffect(() => {
     if (updated || deleted) {
-      var params = `?perPage=${getPerPage.value}&page=1`;
+      var params = `?perPage=${getPerPage.value}&page=${getCurrentPage}`;
       dispatch(onGetSalesOrderList(params));
     }
   }, [updated, deleted]);
@@ -242,6 +241,7 @@ function Main() {
 
     return (
       <div
+        className="underline decoration-dotted whitespace-nowrap"
         onClick={() => {
           setBasicSlideOverPreview(true);
           setCurrentOrderId({

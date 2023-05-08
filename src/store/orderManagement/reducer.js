@@ -40,7 +40,8 @@ const OrderManagementReducer = (state = INIT_STATE, action) => {
     case ADD_NEW_ORDER_MANAGEMENT_SUCCESS:
       return {
         ...state,
-        orderManagements: [...state.orderManagements, action.payload]
+        orderManagements: []
+        // orderManagements: [...state.orderManagements, action.payload]
       };
 
     case ADD_NEW_ORDER_MANAGEMENT_FAIL:

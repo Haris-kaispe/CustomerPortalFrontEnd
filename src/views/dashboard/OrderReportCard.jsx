@@ -5,6 +5,19 @@ import classnames from "classnames";
 import { memo } from "react";
 
 const OrderReportCard = ({ OrderReport, Loading }) => {
+  const CalculatePercentage = (data) => {
+    if (!data.length) return data;
+
+    let total = 0;
+    data.forEach((element) => {
+      total += element.count;
+    });
+    data.forEach((element) => {
+      element.percentage = ((element.count / total) * 100).toFixed(1);
+    });
+    return data;
+  };
+
   return (
     <div className="intro-y box p-5 mt-5">
       {OrderReport.length ? (
@@ -12,9 +25,8 @@ const OrderReportCard = ({ OrderReport, Loading }) => {
           <div className="mt-3">
             <ReportDonutChart height={213} data={OrderReport} />
           </div>
-
           <div className="w-56 sm:w-auto mx-auto mt-4 grid grid-cols-2  ">
-            {OrderReport.map((value, index) => {
+            {CalculatePercentage(OrderReport).map((value, index) => {
               return (
                 <div
                   key={index}
@@ -34,7 +46,7 @@ const OrderReportCard = ({ OrderReport, Loading }) => {
                     })}
                   ></div>
                   <span className="truncate">{$h.capitalizeFirstLetter(value.status)}</span>
-                  <span className="font-medium ml-auto">{value.count}%</span>
+                  <span className="font-medium ml-auto">{value.percentage}%</span>
                 </div>
               );
             })}
@@ -43,7 +55,7 @@ const OrderReportCard = ({ OrderReport, Loading }) => {
       ) : Loading ? (
         <ReactLoading type="bubbles" color="#1E40AF" />
       ) : (
-        <div className="text-3xl font-medium leading-8 mt-6 mb-6">-</div>
+        <div className="w-auto my-10 text-center font-medium text-lg">No Data Found</div>
       )}
     </div>
   );
